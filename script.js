@@ -68,7 +68,7 @@ form.addEventListener("submit", (e) => {
   const date = dateInput.value;
   // Enlever l'erreur précédente
   erreurCreneau.textContent = "";
-            /* 
+            /* Ancienne version avec boucle for ------ Fonctionnelle
             //Vérifier si un rendez-vous existe déjà pour cette date et cette heure
 
             for (let i = 0; i < reservations.length; i++) {
@@ -79,7 +79,7 @@ form.addEventListener("submit", (e) => {
                 }
             } */
 
-  /* Test avec .some */
+  /* Test avec .some --------------- Fonctionnel*/
 
   const creneauDejaPris = reservations.some (resa => resa.date === date && resa.time === heure);
   if (creneauDejaPris) {
