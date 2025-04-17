@@ -31,7 +31,7 @@ form.addEventListener("submit", (e) => {
   }
 
   // Vérifie que le nom ne contient que des lettres
-  const regexNom = /^[a-zA-Z]+$/;
+  const regexNom = /^[a-zA-Z\s]+$/;
 
   if (!regexNom.test(nom)) {
     alert(
