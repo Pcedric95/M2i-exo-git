@@ -1,4 +1,4 @@
-//Sélection des éléments
+/* -------------------------- Sélection des éléments ------------------------------- */
 
 const form = document.querySelector(".form-container");
 const nomInput = document.querySelector("#nom");
@@ -13,16 +13,17 @@ const erreurParticipants = document.querySelector("#erreur-participants");
 
 const bouton = document.querySelector("button");
 
-// stockage des rendez-vous
+/* -------------------------- Récupérations des rendez-vous ----------------------------*/
 
 const reservations = [];
 
-// empêcher le rechargement de la page à chaque clic
+/* ------------------------- Empêcher le rechargement de la page à chaque clic----------------------------------- */
+
 form.addEventListener("submit", (e) => {
   e.preventDefault(); // empêcher le rechargement de la page
   console.clear(); // supprimer la console à chaque clic
 
-  /*--------------------------Vérification du nom------------------------ */
+  /*------------------------- Vérification du nom------------------------ */
   const nom = nomInput.value;
   if (nom.length < 3) {
     alert("⚠️ Attention le nom doit contenir au moins 3 lettres.");
@@ -43,7 +44,7 @@ form.addEventListener("submit", (e) => {
   const heure = heureInput.value;
   erreurHeure.textContent = "";
 
-  /* -----------------Vérification de l'heure---------------------------------------------  */
+  /* -------------------------- Vérification de l'heure---------------------------------------------  */
   // Vérifier si une heure est bien choisie
   if (!heure) {
     erreurHeure.textContent = "choisir une heure.";
@@ -62,7 +63,7 @@ form.addEventListener("submit", (e) => {
   }
   console.log("Heure valide: ", heure);
 
-  /* --------------------------Vérification du créneau ---------------------------------- */
+  /* ------------------------- Vérification du créneau ---------------------------------- */
 
   const date = dateInput.value;
   // Enlever l'erreur précédente
@@ -78,20 +79,20 @@ form.addEventListener("submit", (e) => {
     }
   }
 
-  /*---------Ajout du nombre de participants-------------------*/
+  /*---------------------------- Ajout du nombre de participants-------------------*/
   erreurParticipants.textContent = "";
-  
+
   // Récupération du nombre de participants
-    const participants = parseInt(participantsInput.value);
+  const participants = parseInt(participantsInput.value);
 
   if (isNaN(participants) || participants < 0 || participants > 10) {
-    erreurParticipants.textContent = "⚠️ Le nombre de participants doit être compris entre 1 et 10.";
+    erreurParticipants.textContent =
+      "⚠️ Le nombre de participants doit être compris entre 1 et 10.";
     return;
   }
   console.log("Participants valides :", participants);
 
-
-  // Ajouter les réservations dans la liste
+  /* -------------------------- Ajout de la réservation dans la listef -------------------------- */
 
   reservations.push({
     name: nom,
