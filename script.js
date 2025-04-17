@@ -6,9 +6,11 @@ const nomInput = document.querySelector("#nom");
 const dateInput = document.querySelector("#date");
 const heureInput = document.querySelector("#time");
 const erreurHeure = document.querySelector("#erreur-heure");
-const erreurCreneau = document.querySelector('#erreur-creneau');
+const erreurCreneau = document.querySelector("#erreur-creneau");
 
 const participantsInput = document.querySelector("#nbParticipants");
+const erreurParticipants = document.querySelector("#erreur-participants");
+
 const bouton = document.querySelector("button");
 
 // stockage des rendez-vous
@@ -41,8 +43,7 @@ form.addEventListener("submit", (e) => {
   const heure = heureInput.value;
   erreurHeure.textContent = "";
 
-
-    /* -----------------Vérification de l'heure---------------------------------------------  */
+  /* -----------------Vérification de l'heure---------------------------------------------  */
   // Vérifier si une heure est bien choisie
   if (!heure) {
     erreurHeure.textContent = "choisir une heure.";
@@ -64,15 +65,40 @@ form.addEventListener("submit", (e) => {
   /* --------------------------Vérification du créneau ---------------------------------- */
 
   const date = dateInput.value;
-    // Enlever l'erreur précédente
-    erreurCreneau.textContent = '';
-    
-    //Vérifier si un rendez-vous existe déjà pour cette date et cette heure
+  // Enlever l'erreur précédente
+  erreurCreneau.textContent = "";
 
-    const existeDeja = '';
+  //Vérifier si un rendez-vous existe déjà pour cette date et cette heure
 
-    if (existeDeja) {
-        erreurCreneau.textContent = '⚠️Ce créneau est déjà réservé.'
-        return;
+  for (let i = 0; i < reservations.length; i++) {
+    let resa = reservations[i];
+    if (resa.date === date && resa.time === heure) {
+      erreurCreneau.textContent = "⚠️ Ce créneau est déjà réservé.";
+      return;
     }
+  }
+
+  /*---------Ajout du nombre de participants-------------------*/
+  erreurParticipants.textContent = "";
+  
+  // Récupération du nombre de participants
+    const participants = parseInt(participantsInput.value);
+
+  if (isNaN(participants) || participants < 0 || participants > 10) {
+    erreurParticipants.textContent = "⚠️ Le nombre de participants doit être compris entre 1 et 10.";
+    return;
+  }
+  console.log("Participants valides :", participants);
+
+
+  // Ajouter les réservations dans la liste
+
+  reservations.push({
+    name: nom,
+    date: date,
+    time: heure,
+    participants: participants,
+  });
+
+  console.log("Votre réservation est enregistrée :", reservations);
 });
