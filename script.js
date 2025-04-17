@@ -30,6 +30,7 @@ bouton.addEventListener('click', (e) =>
         alert('Le nom ne doit contenir uniquement des lettres (sans chiffres, ni espaces).');
         return;
     }
+    console.log("Nom valide : ", nom)
 })
 
 
