@@ -63,7 +63,7 @@ form.addEventListener("submit", (e) => {
   }
   console.log("Heure valide: ", heure);
 
-  /* ------------------------- Vérification du créneau ---------------------------------- */
+  /* ------------------------- Vérification du créneau, (dates et heures disponibles) ---------------------------------- */
 
   const date = dateInput.value;
   // Enlever l'erreur précédente
