@@ -46,6 +46,16 @@ form.addEventListener('submit', (e) =>
         return;
     }
 
+    // Séparer l'heure et les minutes 
+    const [h, m] = heure.split(':').map(Number);
+    const heureDecimale = h + m / 60;
+
+    // Vérifier que l'heure choisie est entre 9h00 et 18h00
+    if (heureDecimale < 9 || heureDecimale > 18) {
+        erreurHeure.textContent = "Les rendez-vous ne sont disponbles qu'entre 9h00 et 18h00."
+        return;
+    }
+    console.log("Heure valide: ", heure);
 })
 
 
