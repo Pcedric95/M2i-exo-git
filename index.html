@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <div class="form-container">
+        <form class="form-container">
             <fieldset>
                 <legend>Fiche de prise de rendez-vous</legend>
                 <label for="nom">Nom du client</label>
@@ -20,11 +20,12 @@
                     <input type="date" name="date" id="date" />
                     <label for="time">Heure</label>
                     <input type="time" name="heure" id="time" />
+                    <div id="erreur-heure" class="erreur"></div>
                 </fieldset>
                 <label for="nbParticipants">Nombre de participants</label>
                 <input type="number" name="participants" id="nbParticipants" />
             </fieldset>
-            <button>Réserver</button>
-        </div>
+            <button type="submit">Réserver</button>
+        </form>
     </body>
 </html>

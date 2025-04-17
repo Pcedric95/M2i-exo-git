@@ -12,11 +12,13 @@ const bouton = document.querySelector('button');
 const reservations = [];
 
 // empêcher le rechargement de la page à chaque clic
-bouton.addEventListener('click', (e) =>
+form.addEventListener('submit', (e) =>
 {
     e.preventDefault(); // empêcher le rechargement de la page
     console.clear(); // supprimer la console à chaque clic
     
+
+    /*--------------------------Vérification du nom------------------------ */
     const nom = nomInput.value;
     if (nom.length < 3) {
         alert("⚠️ Attention le nom doit contenir au moins 3 lettres.");
@@ -31,6 +33,9 @@ bouton.addEventListener('click', (e) =>
         return;
     }
     console.log("Nom valide : ", nom)
+
+
+
 })
 
 
