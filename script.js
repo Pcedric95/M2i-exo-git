@@ -1,0 +1,6 @@
+const form = document.querySelector('form-container')
+const nomInput = document.querySelector('nom')
+const dateInput = document.querySelector('date')
+const heureInput = document.querySelector('time')
+const participantsInput = document.querySelector('nbParticipants')
+const bouton = document.querySelector('button')

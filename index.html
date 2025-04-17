@@ -1,37 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de réservation avancé</title>
-    <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"></script>
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Formulaire de réservation avancé</title>
+        <link rel="stylesheet" href="./style.css" />
+        <script src="./script.js" defer></script>
+    </head>
 
-
-
-
-<body>
-    
-    <fieldset>
-        <legend>Fiche de prise de rendez-vous</legend>
-        <label for="nom">Nom du client</label>
-        <input type="text" name="nom" id="nom">
-        <fieldset>
-            <legend>Date et heure</legend>
-            <label for="date">Date du rendez-vous</label>
-            <input type="date" name="date" id="date">
-            <label for="time">Heure</label>
-            <input type="time" name="heure" id="time">
-        </fieldset>
-        <label for="nbParticipants">Nombre de participants</label>
-        <input type="number" name="participants" id="nbParticipants">
-    </fieldset>
-
-    <button>Réserver</button>
-
-
-</body>
-
-
+    <body>
+        <div class="form-container">
+            <fieldset>
+                <legend>Fiche de prise de rendez-vous</legend>
+                <label for="nom">Nom du client</label>
+                <input type="text" name="nom" id="nom" />
+                <fieldset>
+                    <legend>Date et heure</legend>
+                    <label for="date">Date du rendez-vous</label>
+                    <input type="date" name="date" id="date" />
+                    <label for="time">Heure</label>
+                    <input type="time" name="heure" id="time" />
+                </fieldset>
+                <label for="nbParticipants">Nombre de participants</label>
+                <input type="number" name="participants" id="nbParticipants" />
+            </fieldset>
+            <button>Réserver</button>
+        </div>
+    </body>
 </html>
