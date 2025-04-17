@@ -16,15 +16,20 @@ bouton.addEventListener('click', (e) =>
 {
     e.preventDefault(); // empêcher le rechargement de la page
     console.clear(); // supprimer la console à chaque clic
+    
+    const nom = nomInput.value;
+    if (nom.length < 3) {
+        alert("⚠️ Attention le nom doit contenir au moins 3 lettres.");
+        return;
+    }
+    
+    // Vérifie que le nom ne contient que des lettres
+    const regexNom = /^[a-zA-Z]+$/;
+    
+    if (!regexNom.test(nom)) {
+        alert('Le nom ne doit contenir uniquement des lettres (sans chiffres, ni espaces).');
+        return;
+    }
 })
 
-
-const nom = nomInput.value;
-if (nom.length < 3) {
-    alert("⚠️ Attention le nom doit contenir au moins 3 lettres.");
-    return;
-}
-
-// Vérifie que le nom ne contient que des lettres
-const regexNom = /^[a-zA-Z]+$/;
 
