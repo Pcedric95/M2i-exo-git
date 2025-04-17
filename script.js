@@ -68,16 +68,26 @@ form.addEventListener("submit", (e) => {
   const date = dateInput.value;
   // Enlever l'erreur précédente
   erreurCreneau.textContent = "";
+            /* 
+            //Vérifier si un rendez-vous existe déjà pour cette date et cette heure
 
-  //Vérifier si un rendez-vous existe déjà pour cette date et cette heure
+            for (let i = 0; i < reservations.length; i++) {
+                let resa = reservations[i];
+                if (resa.date === date && resa.time === heure) {
+                erreurCreneau.textContent = "⚠️ Ce créneau est déjà réservé.";
+                return;
+                }
+            } */
 
-  for (let i = 0; i < reservations.length; i++) {
-    let resa = reservations[i];
-    if (resa.date === date && resa.time === heure) {
-      erreurCreneau.textContent = "⚠️ Ce créneau est déjà réservé.";
-      return;
-    }
+  /* Test avec .some */
+
+  const creneauDejaPris = reservations.some (resa => resa.date === date && resa.time === heure);
+  if (creneauDejaPris) {
+    erreurCreneau.textContent = "⚠️ Ce créneau est déjà réservé.";
+    return
   }
+
+
 
   /*---------------------------- Ajout du nombre de participants-------------------*/
   erreurParticipants.textContent = "";
