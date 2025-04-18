@@ -13,7 +13,7 @@ let pokemonActuel = 1; // ID du pokémon actuel
 async function getPokemon(info) {
   try {
     //requête à l'API avec le nom ou l'ID du pokémon en ignorant la casse
-    const response = await fetch(BASE_URL + info.toLowerCase());
+    const response = await fetch(BASE_URL + info); // Récupérer les données de l'API
     //Si la réponse incorrecte > erreur
     if (!response.ok) {
       throw new Error("Pokémon not found");
