@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokémon Explorer</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
 </head>
 
 
-
-
 <body>
-    <header>
-        
-    </header>    
-
-    <main>
-        <section>
-            <h1>Titre</h1>
-            <p>Paragraphe</p>
-        </section>
-    </main>
-
+  <h1>🔎 Pokémon Explorer</h1>
+    <div class="recherche">
+        <!-- Zone de recherche -->
+        <input type="text" id="searchInput" placeholder="Nom ou ID d'un Pokémon">
+        <button id="searchBtn">🔍Rechercher</button>
+      
+        <!-- Boutons de navigation -->
+        <div>
+          <button id="prevBtn">⬅️ Précédent</button>
+          <button id="nextBtn">Suivant ➡️</button>
+        </div>
+      
+        <!-- Affichage des infos du Pokémon -->
+        <div id="pokemonInfo"></div>
+    </div>
 </body>
+
 
 
 </html>

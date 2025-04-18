@@ -1,0 +1,13 @@
+body{
+    margin:0 auto;
+}
+
+h1{
+    text-align: center;
+}
+
+.recherche{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
