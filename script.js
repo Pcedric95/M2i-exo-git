@@ -45,5 +45,29 @@ searchButton.addEventListener("click",() => {
 
 // Fonction pour afficher les informations du pokémon
 function displayPokemon(data) {
+
+    
+    // Récupérer les types du pokémon et les afficher
+    const types = data.types.map(typeInfo => typeInfo.type.name).join(", ");
+    console.log(types); // Afficher les types dans la console
+    
+    //Récupérer les capacités du pokémon et les afficher
+    const capacites = data.abilities
+    .slice(0,4) // Limiter à 4 capacités
+    .map(capaciteObj => capaciteObj.ability.name) // Récupérer le nom de la capacité
+    .join(", "); // transformer le tableau en chaîne de caractères séparée par des virgules
+    console.log(capacites); // Afficher les capacités dans la console
+
+
+    // Afficher les données du nom et ID du pokémon dans la div infoDiv
+    infoDiv.innerHTML = `
+        <h2>${data.name.toUpperCase()} (#${data.id})</h2>
+        <img src="${data.sprites.front_default}" alt="${data.name}">
+        <ul>
+            <li>Types : ${types}</li>
+            <li>Capacités : ${capacites}</li>
+        </ul>
+    `;
+
     
 }
