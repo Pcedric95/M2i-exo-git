@@ -43,3 +43,26 @@ h1 {
     font-size: 1.2em;
     font-weight: bold;
 }
+
+/*  ------------- Clavier numérique ----------------------------*/
+.clavier {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+}
+
+.touche {
+    padding: 10px 15px;
+    font-size: 18px;
+    border: none;
+    background-color: #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.touche.special {
+    background-color: #bbb;
+    font-weight: bold;
+}

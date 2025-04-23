@@ -73,10 +73,10 @@ document.addEventListener("keydown", (e) => {
             const position = ligneActuelle * 5 + i;
             motTape += toutesLesCases[position].textContent;
         }
-        if (!motsPossibles.includes(motTape.toUpperCase())) {
+        /*if (!motsPossibles.includes(motTape.toUpperCase())) {
             document.getElementById("message").textContent = " Mot non reconnu.";
             return; // Arrêter le programme, pas de validation
-        }
+        }*/
 
 
         console.log("Le mot tapé est " , motTape);
@@ -149,3 +149,35 @@ boutonRejouer.addEventListener("click", () => {
     document.getElementById("message").textContent = "";
     boutonRejouer.style.display = "none";
 });
+
+// Div des touches virtuelles
+const clavierVirtuel = document.getElementById("clavierVirtuel");
+// l'alphabet
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+
+// Fonction pour créer une touche
+function creerTouche(contenu, className = "") {
+    //créer un bouton pour représenter la touche
+    const touche = document.createElement("button");
+    touche.textContent = contenu; // Afficher la lettre sur le bouton
+    touche.classList.add("touche"); // classe touche pour CSS
+    if (className) touche.classList.add(className); // si class donné > ajout de la classe
+    clavierVirtuel.appendChild(touche); // ajout du bouton dans la div
+
+    // Simuler un clavier physique quand on clique
+    touche.addEventListener("click", () => {
+        const eventSimule = new KeyboardEvent("keydown", {
+            key: contenu === "↵" ? "Enter" : contenu === "⌫" ? "Backspace" : contenu,
+        });
+        document.dispatchEvent(eventSimule); // envoi de la touche au clavier virtuel
+    });
+}
+// créer dles touches de l'alphabet
+alphabet.split("").forEach(lettre => {
+    creerTouche(lettre);
+});
+
+// touches Entrée et Effacer
+creerTouche("↵", "special");
+creerTouche("⌫", "special");
