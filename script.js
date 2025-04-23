@@ -1,6 +1,6 @@
 //  Sélectionner la grille ddu html
 const grille = document.getElementById("grille");
-
+let jeuFini = false; 
 
 // La liste des mots possibles
 const motsPossibles = [
@@ -10,7 +10,7 @@ const motsPossibles = [
 ];
 
 // Choisir un mot au hasard
-const motMystere = motsPossibles[Math.floor(Math.random() * motsPossibles.length)];
+let motMystere = motsPossibles[Math.floor(Math.random() * motsPossibles.length)];
 console.log("Le mot mystère est : " + motMystere);
 
 
@@ -38,6 +38,9 @@ const toutesLesCases = document.querySelectorAll(".case");
 
 // listener sur le clavier
 document.addEventListener("keydown", (e) => {
+    
+    if (jeuFini) return; // Si le jeu est fini, ne rien faire
+    
     const touches = e.key // récupérer la lettre tapée
 
     // Vérifier si c'est une lettre valide ou non
@@ -77,7 +80,7 @@ document.addEventListener("keydown", (e) => {
 
         for (let i = 0 ; i < 5 ; i++){
 
-        const lettre = motTape[i];
+        const lettre = motTape[i].toUpperCase();
         const caseGrille = toutesLesCases[ligneActuelle * 5 + i] //
 
             if (lettre === motMystere[i]) {
@@ -100,7 +103,9 @@ document.addEventListener("keydown", (e) => {
         // Vérifier si le mot est correct > Victoire ou Perdu
         if (motTape.toUpperCase() === motMystere) {
             document.getElementById("message").textContent = " Bravo ! Vous avez trouvé le mot !";
-       
+            jeuFini = true; // Blocage des touches clavier
+            boutonRejouer.style.display = "inline-block";
+
         } else {
             ligneActuelle++;
             caseActuelle = 0;
@@ -108,8 +113,34 @@ document.addEventListener("keydown", (e) => {
             // Si on a dépassé la 6e ligne
             if (ligneActuelle === 6) {
                 document.getElementById("message").textContent = ` Perdu ! Le mot mystère était "${motMystere}".`;
+                jeuFini = true; // Blocage des touches clavier
+                boutonRejouer.style.display = "inline-block";
             }
         }
     }
 
 })
+
+const boutonRejouer = document.getElementById("boutonRejouer");
+
+boutonRejouer.addEventListener("click", () => {
+    // Effacer toute les cases
+    toutesLesCases.forEach(caseGrille => {
+        caseGrille.textContent = "";
+        caseGrille.style.backgroundColor = "white";
+        caseGrille.style.color = "black";
+    })
+    
+    // Réinitialiser les variables du jeu
+    ligneActuelle = 0;
+    caseActuelle = 0;
+    jeuFini = false;
+    
+    // Nouveau mot mystère
+    motMystere = motsPossibles[Math.floor(Math.random() * motsPossibles.length)];
+    console.log("Le nouveau mot mystère est : " + motMystere);
+    
+    // Effacer message et bouton
+    document.getElementById("message").textContent = "";
+    boutonRejouer.style.display = "none";
+});
