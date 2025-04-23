@@ -3,97 +3,91 @@ function choisirMotMystere(listeMots) {
     return listeMots[Math.floor(Math.random() * listeMots.length)];
 }
 
-
-//  Sélectionner la grille ddu html
+// Sélectionner la grille HTML
 const grille = document.getElementById("grille");
 let jeuFini = false; // Suivre si le jeu est terminé ou non
+let toutesLesCases = [];
 
 // La liste des mots possibles
 let motsPossibles = [];
 let motMystere = "";
 
 // Charger les mots depuis le JSON
-fetch("dictionnaireMots.json") // Fait une requête HTTP pour lire dictionnaireMots.json
-    .then((res) => res.json()) // convertir son contenu en objet une fois le fichier chargé
-    .then((data) => { // contient la liste de mots
+fetch("dictionnaireMots.json")
+    .then((res) => res.json())
+    .then((data) => {
         motsPossibles = data;
-        motMystere = choisirMotMystere(motsPossibles).toUpperCase(); // sélection du mot mystère (hasard)
+        motMystere = choisirMotMystere(motsPossibles).toUpperCase(); // sélection du mot mystère
         console.log("Le mot mystère est : " + motMystere);
+        genererGrille(motMystere.length);
+        toutesLesCases = document.querySelectorAll(".case");
     });
 
+// Générer dynamiquement la grille
+function genererGrille(longueurMot) {
+    grille.innerHTML = "";
+    for (let ligne = 0; ligne < 6; ligne++) {
+        const ligneDiv = document.createElement("div");
+        ligneDiv.classList.add("ligne");
 
-// Générer 6 lignes de 5 cases
-for (let ligne = 0; ligne < 5 ; ligne ++){ // Créer les 6 lignes
-    const ligneDiv = document.createElement("div"); // crée la div pour chaque ligne
-    ligneDiv.classList.add("ligne") // Ajout de la classe ligne
+        for (let col = 0; col < longueurMot; col++) {
+            const caseDiv = document.createElement("div");
+            caseDiv.classList.add("case");
+            ligneDiv.appendChild(caseDiv);
+        }
 
-    for (let colonne = 0; colonne < 5 ; colonne ++){ // Créer les 5 cases
-        const caseDiv = document.createElement("div"); // crée la div pour chaque ligne
-        caseDiv.classList.add("case");
-        ligneDiv.appendChild(caseDiv);
+        grille.appendChild(ligneDiv);
     }
-    grille.appendChild(ligneDiv); //  Ici, ajouter chaque case dans chaque lignes
 }
 
-/* ----------------- Ecoute des touches + Ecriture dans la grille -------------------------*/
+// Contrôle clavier et écriture
+let ligneActuelle = 0;
+let caseActuelle = 0;
 
-let ligneActuelle = 0; // numéro de la ligne actuelle de l'entrée utilisateur
-let caseActuelle = 0; // numéro de la case actuelle
-
-// sélectionner toutes les cases de grille
-const toutesLesCases = document.querySelectorAll(".case");
-
-// listener sur le clavier
 document.addEventListener("keydown", (e) => {
-    if (jeuFini || !motMystere) return; // Si le jeu est fini ou mot non prêt
+    if (jeuFini || !motMystere) return;
 
-    const touches = e.key // récupérer la lettre tapée
+    const touches = e.key;
 
-    // Vérifier si c'est une lettre valide ou non
     if (/^[a-zA-Z]$/.test(touches)) {
-        //Vérifier si on a atteint ou pas 5 lettres dans la ligne
-        if (caseActuelle < 5 ) {
-            const positionDansGrille = ligneActuelle * 5 + caseActuelle;
-            toutesLesCases[positionDansGrille].textContent = touches.toUpperCase();
-            caseActuelle ++; // Passer à la case suivante
+        if (caseActuelle < motMystere.length) {
+            const position = ligneActuelle * motMystere.length + caseActuelle;
+            toutesLesCases[position].textContent = touches.toUpperCase();
+            caseActuelle++;
         }
     }
 
-    // Si la touche est Retour arrière
-    if ( touches === 'Backspace' && caseActuelle > 0) {
-        caseActuelle--; // On recule d'une case
-        const positionDansGrille = ligneActuelle * 5 + caseActuelle;
-        toutesLesCases[positionDansGrille].textContent = ""; // Effacement de la case
+    if (touches === "Backspace" && caseActuelle > 0) {
+        caseActuelle--;
+        const position = ligneActuelle * motMystere.length + caseActuelle;
+        toutesLesCases[position].textContent = "";
     }
 
-    // Si l'utilisateur appuie sur Entrée, validation
-    if (touches === 'Enter' && caseActuelle === 5) {
+    if (touches === "Enter" && caseActuelle === motMystere.length) {
         let motTape = "";
-        for (let i = 0; i < 5; i++) {
-            const position = ligneActuelle * 5 + i;
+        for (let i = 0; i < motMystere.length; i++) {
+            const position = ligneActuelle * motMystere.length + i;
             motTape += toutesLesCases[position].textContent;
         }
 
-        console.log("Le mot tapé est : " + motTape);
+        console.log("Mot tapé :", motTape);
 
-        for (let i = 0 ; i < 5 ; i++){
-            const lettre = motTape[i]; // recupérer la lettre donnée de l'user
-            const caseGrille = toutesLesCases[ligneActuelle * 5 + i]; // quel case c'est
+        for (let i = 0; i < motMystere.length; i++) {
+            const lettre = motTape[i];
+            const caseGrille = toutesLesCases[ligneActuelle * motMystere.length + i];
 
-            // Lettre bien placée = vert
             if (lettre === motMystere[i]) {
                 caseGrille.style.backgroundColor = "green";
                 caseGrille.style.color = "white";
             } else if (motMystere.includes(lettre)) {
-                caseGrille.style.backgroundColor = "gold"; // Lettre valide mais pas au bon endroit = jaune
+                caseGrille.style.backgroundColor = "gold";
                 caseGrille.style.color = "black";
             } else {
-                caseGrille.style.backgroundColor = "#aaa"; // pas de bonne lettre = gris
+                caseGrille.style.backgroundColor = "#aaa";
                 caseGrille.style.color = "white";
             }
         }
 
-        // Vérifier si le mot est correct > Victoire ou Perdu
         if (motTape === motMystere) {
             document.getElementById("message").textContent = " Bravo ! Vous avez trouvé le mot !";
             jeuFini = true;
@@ -110,11 +104,11 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
-// Bouton rejouer
+// Bouton "Rejouer"
 const boutonRejouer = document.getElementById("boutonRejouer");
 
 boutonRejouer.addEventListener("click", () => {
-    toutesLesCases.forEach(caseGrille => {
+    toutesLesCases.forEach((caseGrille) => {
         caseGrille.textContent = "";
         caseGrille.style.backgroundColor = "white";
         caseGrille.style.color = "black";
@@ -125,8 +119,47 @@ boutonRejouer.addEventListener("click", () => {
     jeuFini = false;
 
     motMystere = choisirMotMystere(motsPossibles).toUpperCase();
-    console.log("Nouveau mot mystère : " + motMystere);
+    console.log("Nouveau mot mystère :", motMystere);
+    genererGrille(motMystere.length);
+    toutesLesCases = document.querySelectorAll(".case");
 
     document.getElementById("message").textContent = "";
     boutonRejouer.style.display = "none";
 });
+
+// Création du clavier virtuel
+const clavierVirtuel = document.getElementById("clavierVirtuel"); // Sélection du clavier virtuel
+
+
+// alphabet pour les touches
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+// Fonction pour créer une touche
+function creerTouche(contenu, className = "") {
+    
+    // Créer la touche
+    const touche = document.createElement("button");
+    touche.textContent = contenu; // Texte de la touche
+    touche.classList.add("touche"); // classe pour style de la touche
+    
+    // si une classe est ajouté on l'ajoute
+    if (className) touche.classList.add(className);
+    clavierVirtuel.appendChild(touche);
+
+    // Simuler une touche lors d'un clic
+    touche.addEventListener("click", () => {
+        const eventSimule = new KeyboardEvent("keydown", {
+            key: contenu === "↵" ? "Enter" : contenu === "⌫" ? "Backspace" : contenu
+        });
+        document.dispatchEvent(eventSimule); // simule un clavier physique
+    });
+}
+
+// Créer les touches A à Z
+alphabet.split("").forEach((lettre) => {
+    creerTouche(lettre);
+});
+
+// Touches spéciales : Entrée et Effacer
+creerTouche("↵", "special");
+creerTouche("⌫", "special");
