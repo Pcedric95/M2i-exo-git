@@ -75,7 +75,7 @@ h1 {
 #clavierVirtuel {
     margin-top: 2rem;
     display: grid;
-    grid-template-columns: repeat(10, auto); /* 10 touches par ligne */
+    grid-template-columns: repeat(7, auto); /* 10 touches par ligne */
     gap: 0.5rem;
     justify-content: center;
 }
