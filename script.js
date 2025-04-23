@@ -1,27 +1,34 @@
+// Fonction pour choisir un mot aléatoire dans une liste
+function choisirMotMystere(listeMots) {
+    return listeMots[Math.floor(Math.random() * listeMots.length)];
+}
+
+
 //  Sélectionner la grille ddu html
 const grille = document.getElementById("grille");
-let jeuFini = false; 
+let jeuFini = false; // Suivre si le jeu est terminé ou non
 
 // La liste des mots possibles
-const motsPossibles = [
-    "POMME", "PLAGE", "TENTE", "ROUGE", "GRAIN",
-    "POINT", "VERRE", "LIVRE", "NAGER", "SAUTE",
-    "AIDER", "FAIRE", "PLANS", "UNIES", "PLACE"
-];
+let motsPossibles = [];
+let motMystere = "";
 
-// Choisir un mot au hasard
-let motMystere = motsPossibles[Math.floor(Math.random() * motsPossibles.length)];
-console.log("Le mot mystère est : " + motMystere);
+// Charger les mots depuis le JSON
+fetch("dictionnaireMots.json") // Fait une requête HTTP pour lire dictionnaireMots.json
+    .then((res) => res.json()) // convertir son contenu en objet une fois le fichier chargé
+    .then((data) => { // contient la liste de mots
+        motsPossibles = data;
+        motMystere = choisirMotMystere(motsPossibles).toUpperCase(); // sélection du mot mystère (hasard)
+        console.log("Le mot mystère est : " + motMystere);
+    });
 
 
 // Générer 6 lignes de 5 cases
-
-for (let ligne = 0; ligne < 6 ; ligne ++){ // Créer les 6 lignes
-    const ligneDiv = document.createElement("div");
-    ligneDiv.classList.add("ligne")
+for (let ligne = 0; ligne < 5 ; ligne ++){ // Créer les 6 lignes
+    const ligneDiv = document.createElement("div"); // crée la div pour chaque ligne
+    ligneDiv.classList.add("ligne") // Ajout de la classe ligne
 
     for (let colonne = 0; colonne < 5 ; colonne ++){ // Créer les 5 cases
-        const caseDiv = document.createElement("div");
+        const caseDiv = document.createElement("div"); // crée la div pour chaque ligne
         caseDiv.classList.add("case");
         ligneDiv.appendChild(caseDiv);
     }
@@ -38,9 +45,8 @@ const toutesLesCases = document.querySelectorAll(".case");
 
 // listener sur le clavier
 document.addEventListener("keydown", (e) => {
-    
-    if (jeuFini) return; // Si le jeu est fini, ne rien faire
-    
+    if (jeuFini || !motMystere) return; // Si le jeu est fini ou mot non prêt
+
     const touches = e.key // récupérer la lettre tapée
 
     // Vérifier si c'est une lettre valide ou non
@@ -48,10 +54,7 @@ document.addEventListener("keydown", (e) => {
         //Vérifier si on a atteint ou pas 5 lettres dans la ligne
         if (caseActuelle < 5 ) {
             const positionDansGrille = ligneActuelle * 5 + caseActuelle;
-
-            // Insérer la lettre dans la case correspondante
-            toutesLesCases[positionDansGrille].textContent = touches;
-
+            toutesLesCases[positionDansGrille].textContent = touches.toUpperCase();
             caseActuelle ++; // Passer à la case suivante
         }
     }
@@ -59,125 +62,71 @@ document.addEventListener("keydown", (e) => {
     // Si la touche est Retour arrière
     if ( touches === 'Backspace' && caseActuelle > 0) {
         caseActuelle--; // On recule d'une case
-        const positionDansGrille = ligneActuelle * 5 + caseActuelle
+        const positionDansGrille = ligneActuelle * 5 + caseActuelle;
         toutesLesCases[positionDansGrille].textContent = ""; // Effacement de la case
     }
 
-
-     // Si l'utilisateur appuie sur Entrée, validation
-
+    // Si l'utilisateur appuie sur Entrée, validation
     if (touches === 'Enter' && caseActuelle === 5) {
-        // Récupérer le mot tapé sur la ligne en cours
         let motTape = "";
         for (let i = 0; i < 5; i++) {
             const position = ligneActuelle * 5 + i;
             motTape += toutesLesCases[position].textContent;
         }
-        /*if (!motsPossibles.includes(motTape.toUpperCase())) {
-            document.getElementById("message").textContent = " Mot non reconnu.";
-            return; // Arrêter le programme, pas de validation
-        }*/
 
-
-        console.log("Le mot tapé est " , motTape);
-
-        // Comparaison des différentes lettres tapées avec le mot mystère
+        console.log("Le mot tapé est : " + motTape);
 
         for (let i = 0 ; i < 5 ; i++){
+            const lettre = motTape[i]; // recupérer la lettre donnée de l'user
+            const caseGrille = toutesLesCases[ligneActuelle * 5 + i]; // quel case c'est
 
-        const lettre = motTape[i].toUpperCase();
-        const caseGrille = toutesLesCases[ligneActuelle * 5 + i] //
-
+            // Lettre bien placée = vert
             if (lettre === motMystere[i]) {
-                // Lettre bien placée → vert
                 caseGrille.style.backgroundColor = "green";
                 caseGrille.style.color = "white";
-           
             } else if (motMystere.includes(lettre)) {
-                // Lettre présente mais mal placée → jaune
-                caseGrille.style.backgroundColor = "gold";
+                caseGrille.style.backgroundColor = "gold"; // Lettre valide mais pas au bon endroit = jaune
                 caseGrille.style.color = "black";
-           
             } else {
-                // Lettre absente → gris
-                caseGrille.style.backgroundColor = "#aaa";
+                caseGrille.style.backgroundColor = "#aaa"; // pas de bonne lettre = gris
                 caseGrille.style.color = "white";
             }
         }
-    
-        // Vérifier si le mot est correct > Victoire ou Perdu
-        if (motTape.toUpperCase() === motMystere) {
-            document.getElementById("message").textContent = " Bravo ! Vous avez trouvé le mot !";
-            jeuFini = true; // Blocage des touches clavier
-            boutonRejouer.style.display = "inline-block";
 
+        // Vérifier si le mot est correct > Victoire ou Perdu
+        if (motTape === motMystere) {
+            document.getElementById("message").textContent = " Bravo ! Vous avez trouvé le mot !";
+            jeuFini = true;
+            boutonRejouer.style.display = "inline-block";
         } else {
             ligneActuelle++;
             caseActuelle = 0;
-            
-            // Si on a dépassé la 6e ligne
             if (ligneActuelle === 6) {
                 document.getElementById("message").textContent = ` Perdu ! Le mot mystère était "${motMystere}".`;
-                jeuFini = true; // Blocage des touches clavier
+                jeuFini = true;
                 boutonRejouer.style.display = "inline-block";
             }
         }
     }
+});
 
-})
-
+// Bouton rejouer
 const boutonRejouer = document.getElementById("boutonRejouer");
 
 boutonRejouer.addEventListener("click", () => {
-    // Effacer toute les cases
     toutesLesCases.forEach(caseGrille => {
         caseGrille.textContent = "";
         caseGrille.style.backgroundColor = "white";
         caseGrille.style.color = "black";
-    })
-    
-    // Réinitialiser les variables du jeu
+    });
+
     ligneActuelle = 0;
     caseActuelle = 0;
     jeuFini = false;
-    
-    // Nouveau mot mystère
-    motMystere = motsPossibles[Math.floor(Math.random() * motsPossibles.length)];
-    console.log("Le nouveau mot mystère est : " + motMystere);
-    
-    // Effacer message et bouton
+
+    motMystere = choisirMotMystere(motsPossibles).toUpperCase();
+    console.log("Nouveau mot mystère : " + motMystere);
+
     document.getElementById("message").textContent = "";
     boutonRejouer.style.display = "none";
 });
-
-// Div des touches virtuelles
-const clavierVirtuel = document.getElementById("clavierVirtuel");
-// l'alphabet
-const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-
-// Fonction pour créer une touche
-function creerTouche(contenu, className = "") {
-    //créer un bouton pour représenter la touche
-    const touche = document.createElement("button");
-    touche.textContent = contenu; // Afficher la lettre sur le bouton
-    touche.classList.add("touche"); // classe touche pour CSS
-    if (className) touche.classList.add(className); // si class donné > ajout de la classe
-    clavierVirtuel.appendChild(touche); // ajout du bouton dans la div
-
-    // Simuler un clavier physique quand on clique
-    touche.addEventListener("click", () => {
-        const eventSimule = new KeyboardEvent("keydown", {
-            key: contenu === "↵" ? "Enter" : contenu === "⌫" ? "Backspace" : contenu,
-        });
-        document.dispatchEvent(eventSimule); // envoi de la touche au clavier virtuel
-    });
-}
-// créer dles touches de l'alphabet
-alphabet.split("").forEach(lettre => {
-    creerTouche(lettre);
-});
-
-// touches Entrée et Effacer
-creerTouche("↵", "special");
-creerTouche("⌫", "special");
