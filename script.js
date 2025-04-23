@@ -73,6 +73,11 @@ document.addEventListener("keydown", (e) => {
             const position = ligneActuelle * 5 + i;
             motTape += toutesLesCases[position].textContent;
         }
+        if (!motsPossibles.includes(motTape.toUpperCase())) {
+            document.getElementById("message").textContent = " Mot non reconnu.";
+            return; // Arrêter le programme, pas de validation
+        }
+
 
         console.log("Le mot tapé est " , motTape);
 
