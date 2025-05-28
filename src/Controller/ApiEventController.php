@@ -72,7 +72,39 @@ final class ApiEventController extends AbstractController
 
 // 3e GET Détails d'un évènement
 
+    #[Route('/api/events/{id}', name: 'api_event_show', methods: ['GET'])]
+    public function show(int $id): Response
+    {
+        $evenements = [
+            [
+                'id' => 1,
+                'title' => 'Conférence Symfony',
+                'location' => 'Lyon',
+                'date' => '2025-06-10',
+                'isPublic' => true,
+            ],
+            [
+                'id' => 2,
+                'title' => 'Atelier PHP Avancé',
+                'location' => 'Paris',
+                'date' => '2025-06-15',
+                'isPublic' => false,
+            ]
+        ];
+
+        // Recherche de l'événement par ID
+        foreach ($evenements as $event) {
+            if ($event['id'] === $id) {
+                return $this->json($event);
+            }
+        }
+
+        // Si l'événement n'est pas trouvé
+        return $this->json(['message' => 'Événement non trouvé'], 404);
+    }
 
 
 
 }
+// 4 Méthode POST
+
