@@ -6,6 +6,16 @@
     <div class="container mt-5">
         <h1>Créer un nouvel article</h1>
 
+        {% if message %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+            <h3>Aperçu :</h3>
+            <p><strong>Titre :</strong> {{ title }}</p>
+            <p><strong>Contenu :</strong> {{ content }}</p>
+        {% endif %}
+
+
         <form method="post" action="{{ path('post_create') }}">
             <div class="mb-3">
                 <label for="title" class="form-label">Titre</label>

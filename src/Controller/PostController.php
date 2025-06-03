@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class PostController extends AbstractController
 {
@@ -59,9 +60,23 @@ class PostController extends AbstractController
         ]);
     }
     #[Route('/post/create', name: 'post_create')]
-    public function create(): Response
+    public function create(Request $request): Response
     {
+        // Récupère les données du formulaire si soumises
+        $title = $request->request->get('title');
+        $content = $request->request->get('content');
+
+        // Si les champs ont été remplis
+        if ($title && $content) {
+            return $this->render('post/create.html.twig', [
+                'message' => 'Article publié avec succès !',
+                'title' => $title,
+                'content' => $content,
+            ]);
+        }
+
         return $this->render('post/create.html.twig');
     }
+
 
 }
