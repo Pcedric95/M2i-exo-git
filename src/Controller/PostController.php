@@ -32,7 +32,7 @@ class PostController extends AbstractController
             'posts' => $posts,
         ]);
     }
-    #[Route('/post/{id}', name: 'post_show')]
+    #[Route('/post/{id}', name: 'post_show', requirements: ['id' => '\d+'])]
     public function show(int $id): Response
     {
         $posts = [
