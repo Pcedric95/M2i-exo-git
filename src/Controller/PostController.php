@@ -11,7 +11,7 @@ class PostController extends AbstractController
     #[Route('/posts', name: 'post_index')]
     public function index(): Response
     {
-        // ⚙️ Liste simulée d'articles
+        // Liste simulée d'articles
         $posts = [
             [
                 'id' => 1,
@@ -27,7 +27,7 @@ class PostController extends AbstractController
             ],
         ];
 
-        // 🧠 On passe ces posts à la vue Twig
+        // Envoyer à la vue Twig les articles
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
         ]);
@@ -57,6 +57,11 @@ class PostController extends AbstractController
         return $this->render('post/show.html.twig', [
             'post' => $posts[$id],
         ]);
+    }
+    #[Route('/post/create', name: 'post_create')]
+    public function create(): Response
+    {
+        return $this->render('post/create.html.twig');
     }
 
 }
