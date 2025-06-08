@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sélecteurs CSS - Démonstration</title>
+  <link rel="stylesheet" href="selecteurs.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    section {
+      background: #fff;
+      margin-bottom: 20px;
+      padding: 15px;
+      border-left: 5px solid #333;
+    }
+    .exemple {
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px dashed #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Démonstration des sélecteurs CSS</h1>
+
+  <section id="selecteur-type">
+    <h2>Sélecteur de type</h2>
+    <p>Exemple : <code>p { color: blue; }</code></p>
+    <div class="exemple">
+      <p>Ce texte est affecté par un sélecteur de type (p).</p>
+    </div>
+  </section>
+
+  <section id="selecteur-classe">
+    <h2>Sélecteur de classe</h2>
+    <p>Exemple : <code>.important { font-weight: bold; }</code></p>
+    <div class="exemple">
+      <p class="important">Ce paragraphe est en gras grâce à une classe.</p>
+    </div>
+  </section>
+
+  <section id="selecteur-id">
+    <h2>Sélecteur d'ID</h2>
+    <p>Exemple : <code>#unique { background-color: yellow; }</code></p>
+    <div class="exemple">
+      <p id="unique">Ce paragraphe a un ID unique et un fond jaune.</p>
+    </div>
+  </section>
+
+  <section id="selecteurs-combines">
+    <h2>Sélecteurs combinés</h2>
+    <p>Exemple : <code>article p { color: green; }</code></p>
+    <div class="exemple">
+      <article>
+        <p>Ce paragraphe dans un article est vert.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="selecteurs-adjacents">
+    <h2>Sélecteurs adjacents</h2>
+    <p>Exemple : <code>h2 + p { font-style: italic; }</code></p>
+    <div class="exemple">
+      <h2>Titre</h2>
+      <p>Ce paragraphe suit directement un h2 et est en italique.</p>
+    </div>
+  </section>
+
+  <section id="selecteurs-atributs">
+    <h2>Sélecteurs d'attributs</h2>
+    <p>Exemple : <code>input[type="text"] { border: 2px solid red; }</code></p>
+    <div class="exemple">
+      <input type="text" placeholder="Texte" />
+      <input type="email" placeholder="Email" />
+    </div>
+  </section>
+
+  <section id="selecteurs-pseudo">
+    <h2>Pseudo-sélecteurs</h2>
+    <p>Exemple : <code>a:hover { color: red; }</code></p>
+    <div class="exemple">
+      <a href="#">Survole ce lien</a>
+    </div>
+  </section>
+
+  <section id="selecteurs-avances">
+    <h2>Sélecteurs avancés</h2>
+    <p>Exemples : <code>:nth-child(2), :first-child, :last-child</code></p>
+    <div class="exemple">
+      <ul>
+        <li>Premier</li>
+        <li>Deuxième</li>
+        <li>Troisième</li>
+      </ul>
+    </div>
+  </section>
+
+</body>
+</html>

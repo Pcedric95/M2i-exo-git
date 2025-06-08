@@ -1,0 +1,28 @@
+<?php
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exo-16</title>
+</head>
+
+<body>
+    <h2>1. Formulaire GET</h2>
+    <form method="get">
+        <input type="text" name="nom" placeholder="nom">
+        <input type="text" name="age" placeholder="age">
+        <button type="submit">Envoyer en GET</button>
+    </form>
+
+    <h2>2. Formulaire POST</h2>
+    <form method="post" action="">
+        <input type="text" name="post_text" placeholder="Entrez quelque chose en POST">
+        <button type="submit">Envoyer en POST</button>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+/* ========== Animations ========== */
+
+@keyframes rotateClockwise {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes rotateCounterClockwise {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  
+  /* ========== Mise en page globale ========== */
+  
+  body {
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* ========== Drapeau ========== */
+  
+  .drapeau {
+    position: relative;
+    background-color: #003399; /* Bleu européen */
+    width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    /* ========= Lettres UE============ */
+  .ue {
+    position: absolute;
+    font-size: 50px;
+    font-weight: bold;
+    color: yellow;
+    animation: pulse 2s infinite;
+  }
+  
+  /* ========== Conteneur des étoiles ========== */
+  
+  .star {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background-color: yellow;
+  }
+  
+  /* ========== Étoile ========== */
+
+  .star:nth-child(odd) {
+    animation: rotateClockwise 5s linear infinite;
+  }
+  
+  .star:nth-child(even) {
+    animation: rotateCounterClockwise 5s linear infinite;
+  }
+  
+  /* ========== Texte "UE" ========== */

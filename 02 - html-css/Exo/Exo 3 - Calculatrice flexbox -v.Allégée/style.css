@@ -1,0 +1,83 @@
+/* utiliser des sélecteurs avancés comme dans CSS Diner, */
+
+/* Conteneur principal */
+.Calculatrice {
+  width: 300px;
+  height: 400px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 100px;
+  box-shadow: 0 0 10px #000;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+/* Ecran */
+.Calculatrice div:nth-child(1) {
+  text-align: right;
+  font-size: 2em;
+}
+
+/* Zone des touches */
+.touches {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Style par défaut pour toutes les touches */
+.touches div {
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 23%;
+  margin: 1%;
+  height: 50px;
+}
+
+/* Hover générique */
+.touches div:hover {
+  background-color: #dcdcdc;
+}
+
+/* Exceptions */
+
+/* Première ligne (C, +/- et %) */
+.touches div:nth-of-type(-n + 3) {
+  background-color: #f1972f9d;
+}
+.touches div:nth-of-type(-n + 3):hover {
+  background-color: #f1972f;
+}
+
+/* Colonne des opérateurs (/, X, -, +) */
+.touches div:nth-child(4n) {
+  background-color: #f1972f9d;
+}
+.touches div:nth-child(4n):hover {
+  background-color: #f1972f;
+}
+
+/* Touche égal (=), dernière */
+.touches div:nth-last-child(1) {
+  background-color: #f1972f;
+  width: 48%;
+}
+
+/* Touche 0 et virgule (on garde leur taille spécifique) */
+.touches div:nth-child(17),
+.touches div:nth-child(18) {
+  width: 23%;
+}

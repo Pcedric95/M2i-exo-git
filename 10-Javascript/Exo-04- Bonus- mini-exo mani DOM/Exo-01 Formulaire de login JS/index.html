@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+</head>
+
+
+
+
+<body>
+    <h1>Connexion</h1>
+    <fieldset>
+        <legend>Formulaire de validation</legend>
+
+        <form id="formulaireLogin" novalidate>
+
+            <label for="pseudo">Pseudonyme</label>
+            <input type="text" id="pseudo" name="pseudo" required />
+            <span class="erreur" id="erreurPseudo"></span>
+
+            <label for="motdepasse">Mot de passe</label>
+            <input type="password" id="motdepasse" name="motdepasse" required />
+            <span class="erreur" id="erreurMotdepasse"></span>
+
+            <button type="submit">Se connecter</button>
+        </form>
+
+    </fieldset>
+
+
+</body>
+
+
+</html>

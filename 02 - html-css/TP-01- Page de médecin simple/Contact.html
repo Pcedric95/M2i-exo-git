@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Médecin - PAULIN Cédric</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="script" href="./script.js" />
+</head>
+
+<!-- Le but de cette page web est de créer une page de médecin. il contiendra un en-tête avec une barre de navigation. Quelques articles de blog(même fictifs). Un pied de page mentionnant différentes informations/liens complémentaires -->
+
+<body>
+  <header>
+    <div class="logo">
+      <a href="./index.html">
+        <img src="./img/Logo PAULIN.png" alt="Logo PAULIN" width="100" height="100" />
+      </a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="./index.html">Accueil</a></li>
+        <li><a href="./horaires.html">Horaires</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+        <li><a href="./rendezvous.html">Rendez-vous</a></li>
+      </ul>
+    </nav>
+    
+  </header>
+
+  <main>
+    <!-- Formulaire de contact -->
+    <div class="contact">
+      <div class="form-container">
+        <form class="form">
+          <p class="title">Contactez-moi</p>
+          <input class="input" type="text" name="nom" placeholder="Nom" required />
+          <input class="input" type="text" name="prenom" placeholder="Prénom" required />
+          <input class="input" type="email" name="email" placeholder="Email" required />
+          <input class="input" type="tel" name="telephone" placeholder="Téléphone" required />
+          <textarea class="input" name="message" placeholder="Votre message" required></textarea>
+          <button class="form-btn" type="submit">Envoyer</button>
+        </form>
+
+        <div class="img-contact">
+          <a href="#">
+            <img src="./img/contact.jpg" alt="Contact cabinet" class="contact-img">
+          </a>
+          <p>Pour toute urgence, appelez le :</p>
+          <p>07 87 65 43 21 - Notre standard d'urgence</p>
+          <p>Sinon appelez le <em>Samu - le 15</em> </p>
+        </div>
+
+      </div>
+      <section class="map-section">
+        <h2>📍 Localisation du cabinet</h2>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2785.21732368254!2d4.832833226889128!3d45.726736321079585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4eb00061ad627%3A0x9f3f0744f603f173!2sM2i%20Formation!5e0!3m2!1sfr!2sfr!4v1743067877442!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </section>
+
+
+  </main>
+
+  <footer>
+
+    <div class="footlinks">
+      <a href=""><img src="/img/icons8-facebook-100.png" alt="Logo Facebook"></a>
+      <a href=""><img src="./img/icons8-linkedin-100.png" alt="Logo LinkedIn"></a>
+      <a href=""><img src="./img/icons8-doctolib-100.png" alt="Logo Doctolib"></a>
+    </div>
+
+    <div class="copyright">
+      <p>© 2021 - PAULIN Cédric</p>
+    </div>
+
+    <div class="OtherLinks">
+      <p><a href="">Mentions légales</a></p>
+      <p><a href="">Politique de confidentialité</a></p>
+      <p><a href="">Cookies</a></p>
+      <p><a href="">Plan du site</a></p>
+    </div>
+  </footer>
+</body>
+
+</html>

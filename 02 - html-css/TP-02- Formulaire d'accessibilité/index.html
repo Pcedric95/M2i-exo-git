@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de réservation</title>
+    <link rel="stylesheet" href="./style.css"> </head>
+
+<body>
+    <main>
+        <h1>Réservation de voyage</h1>
+        <!-- Début du formulaire -->
+        <form id="reservation-form" aria-labelledby="reservation-form-title">
+            <!-- 1. Informations personnelles -->
+            <fieldset>
+                <legend id="reservation-form-title">Informations personnelles</legend>
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" required aria-required="true">
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom" required aria-required="true">
+                <label for="email">Adresse email :</label>
+                <input type="email" id="email" name="email" required aria-required="true">
+                <label for="tel">Téléphone :</label>
+                <input type="tel" id="tel" name="tel" required aria-required="true" aria-describedby="tel-desc"> <small id="tel-desc">10 chiffres sans espace</small> </fieldset>
+            <!-- 2. Adresse de facturation -->
+            <fieldset>
+                <legend>Adresse de facturation</legend>
+                <label for="facturation-rue">Rue :</label>
+                <input type="text" id="facturation-rue" name="facturation-rue" required aria-required="true">
+                <label for="facturation-ville">Ville :</label>
+                <input type="text" id="facturation-ville" name="facturation-ville" required aria-required="true">
+                <label for="facturation-code">Code postal :</label>
+                <input type="text" id="facturation-code" name="facturation-code" required aria-required="true">
+                <label for="facturation-pays">Pays :</label>
+                <input type="text" id="facturation-pays" name="facturation-pays" required aria-required="true"> </fieldset>
+            <!-- 3. Adresse de destination -->
+            <fieldset>
+                <legend>Adresse de destination</legend>
+                <label for="destination-rue">Rue :</label>
+                <input type="text" id="destination-rue" name="destination-rue" required aria-required="true">
+                <label for="destination-ville">Ville :</label>
+                <input type="text" id="destination-ville" name="destination-ville" required aria-required="true">
+                <label for="destination-code">Code postal :</label>
+                <input type="text" id="destination-code" name="destination-code" required aria-required="true">
+                <label for="destination-pays">Pays :</label>
+                <input type="text" id="destination-pays" name="destination-pays" required aria-required="true"> </fieldset>
+            <!-- 4. Création d'un compte (mot de passe) -->
+            <fieldset>
+                <legend>Création de compte</legend>
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" required aria-required="true">
+                <label for="confirmPassword">Confirmer le mot de passe :</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required aria-required="true"> </fieldset>
+            <!-- 5. Type de voyage + dates -->
+            <fieldset>
+                <legend>Informations de voyage</legend>
+                <label for="traveltype">Type de voyage :</label>
+                <select name="traveltype" id="traveltype" aria-required="true">
+                    <option value="">--- Veuillez choisir votre type de voyage ---</option>
+                    <option value="aller-simple">Aller simple</option>
+                    <option value="aller-retour">Aller-retour</option>
+                    <option value="multi">Multi-destinations</option>
+                </select>
+                <label for="departureDate">Date de départ :</label>
+                <input type="date" id="departureDate" name="departureDate" required aria-required="true">
+                <label for="arrivalDate">Date de retour :</label>
+                <input type="date" id="arrivalDate" name="arrivalDate"> </fieldset>
+            <!-- 6. Classe de voyage -->
+            <fieldset class="choice">
+                <legend>Classe de voyage</legend>
+                <label>Économique
+                    <input type="radio" name="classe" value="eco">
+                </label>
+                <label>Affaires
+                    <input type="radio" name="classe" value="aff"> </label>
+                <label>Première classe
+                    <input type="radio" name="classe" value="prem"> </label>
+            </fieldset>
+            <!-- 7. Options supplémentaires -->
+            <fieldset class="choice">
+                <legend>Options supplémentaires</legend>
+                <label>Repas spéciaux
+                    <input type="checkbox" name="services[]" value="repas"> </label>
+                <label>Siège grands espaces
+                    <input type="checkbox" name="services[]" value="siege">
+                </label>
+                <label>Valises en plus
+                    <input type="checkbox" name="services[]" value="bagages"> </label>
+            </fieldset>
+            <!-- 8. Demandes spéciales -->
+            <fieldset>
+                <legend>Demandes spéciales</legend>
+                <label for="specialdemand" class="visually-hidden">Zone de texte pour les demandes spéciales</label>
+                <textarea id="specialdemand" name="specialdemand" placeholder="Ecrivez vos demandes ici..."></textarea>
+            </fieldset>
+            <!-- 9. Soumission -->
+            <button type="submit">Confirmez votre demande de réservation</button>
+        </form>
+    </main>
+</body>
+
+</html>

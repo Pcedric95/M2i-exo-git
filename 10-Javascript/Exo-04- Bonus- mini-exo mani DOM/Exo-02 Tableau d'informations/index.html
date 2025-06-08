@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+</head>
+
+
+
+
+<body>
+
+    <h1>Ajouter une personne</h1>
+
+    <form id="formulairePersonne">
+        <label for="nom">Nom</label>
+        <input type="text" name="nom" id="nom">
+
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom">
+
+        <label for="dateNaissance">Date de Naissance :</label>
+        <input type="text" name="dateNaissance" id="dateNaissance" required>
+
+        <button type="submit">Ajouter</button>
+    </form>
+    
+    <h2>Liste de personnes</h2>
+    <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date de naissance</th>
+          </tr>
+        </thead>
+        <tbody id="tableauPersonnes">
+          <!-- Les lignes seront ajoutés ici -->
+        </tbody>
+      </table>
+
+</body>
+
+
+</html>

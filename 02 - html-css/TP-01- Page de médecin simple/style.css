@@ -1,0 +1,429 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+
+}
+
+/* Header */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #136a8a, #267871);
+}
+
+/* Barre de navigation */
+
+.logo {
+  padding: 10px 0 5px 10px; /* haut | droite | bas | gauche */
+}
+
+
+ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin-left: 5px;
+}
+
+ul li {
+  margin: 0 10px;
+}
+
+ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  position: relative;
+  padding: 5px 10px;
+  transition: color 0.3s ease;
+}
+ul li a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+ul li a:hover {
+  color: rgb(65, 213, 200);
+}
+
+ul li a:hover::after {
+  width: 100%;
+}
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:visited {
+  text-decoration: none;
+}
+
+header nav a{
+  color: white;
+}
+
+
+/* Content */
+
+h1{
+  text-align: center;
+}
+
+
+.presentation {
+  max-width: 90vw;
+  margin: 30px auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #e6f2f2;
+  padding: 30px 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.text-presentation {
+  width: 50%;
+  margin: auto;
+  text-align: justify;
+  font-size: 1.2em;
+}
+
+.img-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 30px; /* un peu d'espace à gauche du formulaire */
+}
+
+.presentation a {
+  color: #267871;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.presentation a:hover {
+  text-decoration: underline;
+}
+
+.blog {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+article p {
+  font-size: 0.9em;
+  line-height: 1.5em;
+  text-align: justify; /* Ajout */
+}
+article {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* infos cards ---- Différents Articles de blog */
+.card-title {
+  color: #262626;
+  font-size: 1.5em;
+  line-height: normal;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.small-desc {
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.5em;
+  color: #452c2c;
+  font-size: 1em;
+}
+
+
+.card {
+  display: block;
+  position: relative;
+  background-color: #f2f8f9;
+  border-radius: 10px;
+  padding: 2em 1.2em;
+  margin: 12px;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: left; 
+}
+
+.card p {
+  text-align: justify; 
+  margin: 0 0 10px 0;
+}
+
+.card:hover .small-desc {
+  transition: all 0.5s ease-out;
+}
+
+.card:hover .card-title {
+  transition: all 0.5s ease-out;
+  color: rgba(45, 186, 190, 0.8);
+}
+
+/* Footer */
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #136a8a, #267871);
+  color: white;
+  font-family: 'Lato', sans-serif;
+
+}
+
+.copyright {
+  font-size: 0.8em;
+}
+.footlinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+}
+.footlinks img {
+  width: 50px;
+  height: 50px;
+}
+
+.footlinks a img {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(40%);
+}
+
+.footlinks a:hover img {
+  transform: scale(1.2) rotate(5deg);
+  filter: grayscale(0%) brightness(1.2);
+  cursor: pointer;
+}
+
+
+.OtherLinks {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  
+}
+.OtherLinks p a:hover {
+  transition: color 0.5s;
+  color: rgb(65, 213, 200);
+}
+
+
+/* Page des horaires */
+
+.horaires {
+  padding: 20px;
+  text-align: center;
+}
+
+.table-horaires {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-size: 1em;
+}
+
+.table-horaires th,
+.table-horaires td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.table-horaires th {
+  background-color: #136a8a;
+  color: white;
+}
+
+.table-horaires tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
+.contact-img {
+  margin: 20px auto;
+  width: auto;
+  height: 250px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Boite du Formulaire */
+
+.form-container {
+  display: flex;
+  margin: auto;
+  background-color: #f2f8f9;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/*Titre contactez-moi*/
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #136a8a;
+}
+
+/*Les informations*/
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: auto;
+}
+
+.input {
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.input:focus {
+  border-color: #136a8a;
+}
+
+/*Zone message*/
+
+textarea.input {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/*Bouton Envoyer*/
+.form-btn {
+  background-color: #136a8a;
+  color: white;
+  font-size: 16px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-btn:hover {
+  background-color: #0f566f;
+}
+
+/* Section Localisation */
+
+
+.map-section {
+  text-align: center;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.map-section h2 {
+  margin-bottom: 20px;
+  color: #136a8a;
+}
+
+.map-container iframe {
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* ======= PAGE RENDEZ-VOUS ======= */
+
+.rdv-section {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.rdv-section h2 {
+  color: #136a8a;
+  margin-bottom: 30px;
+  font-size: 2em;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 20px;
+}
+
+.day {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  padding: 20px;
+  text-align: left;
+}
+
+.day h3 {
+  font-size: 1.3em;
+  margin-bottom: 15px;
+  color: #136a8a;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 5px;
+}
+
+.day ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.day li {
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  font-size: 0.95em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* Créneaux disponibles */
+.available {
+  background-color: #e6f7f7;
+  color: #136a8a;
+  border: 1px solid #b3e5e5;
+}
+
+/* Créneaux indisponibles */
+.unavailable {
+  background-color: #f8d7da;
+  color: #a94442;
+  border: 1px solid #f5c6cb;
+  text-decoration: line-through;
+}
