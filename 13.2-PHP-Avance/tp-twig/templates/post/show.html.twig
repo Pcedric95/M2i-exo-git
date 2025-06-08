@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-3">{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+        <p><strong>Créé le :</strong> {{ post.createdAt|date('Y-m-d H:i') }}</p>
+
+        <a href="{{ path('post_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+    </div>
+{% endblock %}
