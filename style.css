@@ -1,0 +1,107 @@
+/* --- Reset de base --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Corps de la page --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* --- Titre principal --- */
+h1 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+/* --- Grille du jeu --- */
+.grille {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Lignes et cases --- */
+.ligne {
+    display: flex;
+    justify-content: center;
+}
+
+.case {
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: white;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- Message de victoire ou défaite --- */
+.message {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+/* --- Bouton Rejouer --- */
+#boutonRejouer {
+    display: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#boutonRejouer:hover {
+    background-color: #3c9441;
+}
+
+/* --- Clavier virtuel --- */
+#clavierVirtuel {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(7, auto); /* 10 touches par ligne */
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.touche {
+    padding: 0.6rem 0.8rem;
+    font-size: 1rem;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    min-width: 2.5rem;
+    text-align: center;
+}
+
+.touche:hover {
+    background-color: #ddd;
+    transform: scale(1.2);
+}
+
+.touche.special {
+    background-color: #cce5ff;
+    font-weight: bold;
+}
+.touche.special:hover {
+    background-color: #b8daff;
+    transform: scale(1.3);
+}
