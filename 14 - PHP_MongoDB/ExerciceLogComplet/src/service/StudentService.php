@@ -81,7 +81,7 @@ class StudentService
 
         return $success;
     }
-    
+
 
     // Permet d'éditer un étudiant
     function editStudent(): void

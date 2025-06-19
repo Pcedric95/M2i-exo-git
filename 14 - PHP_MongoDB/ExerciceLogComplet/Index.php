@@ -19,6 +19,7 @@ $logger = new Logger();
 
 // Récupération des actions formulaire
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Fonctionnement depuis "value" du formulaire HTML
     $action = $_POST['action'] ?? '';
 
     if ($action === 'Ajouter') {
