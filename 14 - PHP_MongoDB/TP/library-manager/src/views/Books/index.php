@@ -27,11 +27,12 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </thead>
         <tbody>
         <?php foreach ($books as $book): ?>
+            <?php $user = User::findById($book['user_id']); ?>
             <tr>
-                <td><?= htmlspecialchars($book['titre']) ?></td>
-                <td><?= htmlspecialchars($book['auteur']) ?></td>
-                <td><?= htmlspecialchars($book['isbn']) ?></td>
-                <td><?= htmlspecialchars($book['user_id']) ?></td>
+                <td><?= $book['titre'] ?></td>
+                <td><?= $book['auteur'] ?></td>
+                <td><?= $book['isbn'] ?></td>
+                <td><?= $user ? $user->getNom() : 'Inconnu' ?></td>
                 <td><a href="?page=show&id=<?= $book['id'] ?>">Voir</a></td>
             </tr>
         <?php endforeach; ?>
