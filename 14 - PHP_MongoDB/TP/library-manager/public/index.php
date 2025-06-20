@@ -61,6 +61,11 @@ switch ($page)
         require_once __DIR__ . '/../src/Controllers/BookController.php';
         storeBook();
         break;
+    case 'review':
+        require_once __DIR__ . '/../src/Controllers/BookController.php';
+        addReview();
+        break;
+
     case 'index':
     default:
         require_once __DIR__ . '/../src/Controllers/BookController.php';
