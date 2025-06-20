@@ -65,4 +65,19 @@ class User {
 
         return null;
     }
+    public static function findByEmail(string $email): ?User {
+        $pdo = MySQLConnection::getConnection();
+
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($data) {
+            return new User($data['nom'], $data['email'], $data['id']);
+        }
+
+        return null;
+    }
 }
+
+
