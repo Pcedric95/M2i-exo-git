@@ -55,7 +55,10 @@ switch ($page)
     case 'show':
         require_once __DIR__ . '/../src/Views/books/show.php';
         break;
-
+    case 'store':
+        require_once __DIR__ . '/../src/Controllers/BookController.php';
+        storeBook();
+        break;
     case 'index':
     default:
         require_once __DIR__ . '/../src/Views/books/index.php';
