@@ -6,7 +6,7 @@ use Library\Manager\Database\MySQLConnection;
 use Library\Manager\Models\User;
 use Library\Manager\Models\Book;
 
-
+/*
 // Test 1
 
 $pdo = MySQLConnection::getConnection();
@@ -41,4 +41,24 @@ if (!$existingBook) {
     echo "<br>Livre ajouté avec ID : " . $nouveauLivre->getId() . PHP_EOL;
 } else {
     echo "<br>Ce livre existe déjà avec ID : " . $existingBook->getId() . PHP_EOL;
-}
+} */
+
+
+$page = $_GET['page'] ?? 'index'; // index par défaut
+
+switch ($page)
+    {
+    case 'create':
+        require_once __DIR__ . '/../src/Views/books/create.php';
+        break;
+
+    case 'show':
+        require_once __DIR__ . '/../src/Views/books/show.php';
+        break;
+
+    case 'index':
+    default:
+        require_once __DIR__ . '/../src/Views/books/index.php';
+        break;
+    }
+
