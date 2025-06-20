@@ -3,6 +3,8 @@
 namespace Library\Manager\Models;
 
 use Library\Manager\Database\MySQLConnection;
+use PDO;
+
 
 class Book {
     private ?int $id;
@@ -63,6 +65,27 @@ class Book {
         if ($data) {
             return new Book($data['titre'], $data['auteur'], $data['isbn'], $data['user_id'], $data['id']);
         }
+        return null;
+    }
+
+    // Vérifier si un livre existe avec son ISBN
+    public static function findByIsbn(string $isbn): ?Book {
+        $pdo = MySQLConnection::getConnection();
+
+        $stmt = $pdo->prepare("SELECT * FROM books WHERE isbn = :isbn");
+        $stmt->execute(['isbn' => $isbn]);
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($data) {
+            return new Book(
+                $data['titre'],
+                $data['auteur'],
+                $data['isbn'],
+                $data['user_id'],
+                $data['id']
+            );
+        }
+
         return null;
     }
 
