@@ -13,5 +13,7 @@
             "email": "167176176+Pcedric95@users.noreply.github.com"
         }
     ],
-    "require": {}
+    "require": {
+        "mongodb/mongodb": "^2.1"
+    }
 }

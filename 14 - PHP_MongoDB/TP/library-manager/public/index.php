@@ -53,14 +53,18 @@ switch ($page)
         break;
 
     case 'show':
-        require_once __DIR__ . '/../src/Views/books/show.php';
+        require_once __DIR__ . '/../src/Controllers/BookController.php';
+        showBook((int) ($_GET['id'] ?? 0));
         break;
+
     case 'store':
         require_once __DIR__ . '/../src/Controllers/BookController.php';
         storeBook();
         break;
     case 'index':
     default:
-        require_once __DIR__ . '/../src/Views/books/index.php';
+        require_once __DIR__ . '/../src/Controllers/BookController.php';
+        listBooks();
         break;
-    }
+
+}

@@ -1,13 +1,15 @@
 <?php
 
-use Library\Manager\Models\Book;
 use Library\Manager\Models\User;
+use Library\Manager\Repository\ReviewRepository;
+use Library\Manager\Repository\CategoryRepository;
+
+/** @var \Library\Manager\Models\Book[] $books */
+
+$reviewRepo = new ReviewRepository();
+$categoryRepo = new CategoryRepository();
 
 ob_start();
-
-$pdo = \Library\Manager\Database\MySQLConnection::getConnection();
-$stmt = $pdo->query("SELECT * FROM books ORDER BY id DESC");
-$books = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
     <h2>Liste des livres</h2>
@@ -22,18 +24,29 @@ $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <th>Auteur</th>
             <th>ISBN</th>
             <th>Utilisateur</th>
+            <th>Catégories</th>
+            <th>Avis</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <?php foreach ($books as $book): ?>
-            <?php $user = User::findById($book['user_id']); ?>
+            <?php
+            $user = User::findById($book->getUserId());
+            $categories = $categoryRepo->findByBookId($book->getId());
+            $catNames = array_map(fn($c) => $c->getNom(), $categories);
+
+            $avis = $reviewRepo->findByBookId($book->getId());
+            $avg = $reviewRepo->getAverageNote($book->getId());
+            ?>
             <tr>
-                <td><?= $book['titre'] ?></td>
-                <td><?= $book['auteur'] ?></td>
-                <td><?= $book['isbn'] ?></td>
+                <td><?= $book->getTitre() ?></td>
+                <td><?= $book->getAuteur() ?></td>
+                <td><?= $book->getIsbn() ?></td>
                 <td><?= $user ? $user->getNom() : 'Inconnu' ?></td>
-                <td><a href="?page=show&id=<?= $book['id'] ?>">Voir</a></td>
+                <td><?= implode(', ', $catNames) ?></td>
+                <td><?= count($avis) ?> avis — ★ <?= $avg ?></td>
+                <td><a href="?page=show&id=<?= $book->getId() ?>">Voir</a></td>
             </tr>
         <?php endforeach; ?>
         </tbody>
