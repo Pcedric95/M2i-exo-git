@@ -1,0 +1,17 @@
+{
+    "name": "library/manager",
+    "description": "Mini gestionnaire de bibliothèque personnalisé",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Library\\Manager\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pcedric95",
+            "email": "167176176+Pcedric95@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
