@@ -72,4 +72,8 @@ public class Client {
     public String toString() {
         return prenom + " " + nom + " (" + age + " ans), Tel: " + telephone + ", Adresse: " + adresse;
     }
+
+    public void ajouterBillet(Billet billet) {
+        billets.add(billet);
+    }
 }
