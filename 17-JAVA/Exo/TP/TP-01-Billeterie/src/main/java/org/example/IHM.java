@@ -13,6 +13,17 @@ public class IHM {
 
     private static void reserverBillet(Scanner sc) {
 
+        // si client/evenement non trouvé
+        if (clients.isEmpty()) {
+            System.out.println("Aucun client trouvé. Veuillez en créer un avant de réserver.");
+            return;
+        }
+
+        if (evenements.isEmpty()) {
+            System.out.println("Aucun événement trouvé. Veuillez en créer un avant de réserver.");
+            return;
+        }
+
         // -------------  Clients ---------------------
 
 
@@ -71,6 +82,11 @@ public class IHM {
     }
 
     private static void afficherBillets(Scanner sc) {
+        // si client vide
+        if (clients.isEmpty()) {
+            System.out.println("Aucun client disponible. Veuillez en créer un d’abord.");
+            return;
+        }
 
         //Afficher client avec les index
 
@@ -105,6 +121,7 @@ public class IHM {
                 System.out.println(b);
             }
         }
+
     }
 
 
