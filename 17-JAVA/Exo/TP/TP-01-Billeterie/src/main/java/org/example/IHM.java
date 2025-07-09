@@ -66,8 +66,15 @@ public class IHM {
         System.out.println("Veuillez entrer le numéro de place :");
         int numeroPlace = sc.nextInt();
         sc.nextLine();
-        System.out.println("Veuillez entrer le type de place : ");
-        String typePlace = sc.nextLine();
+        System.out.println("Veuillez choisir le type de place :");
+        TypePlace[] types = TypePlace.values();
+        for (int i = 0; i < types.length; i++) {
+            System.out.println(i + " - " + types[i]);
+        }
+        int indexType = sc.nextInt();
+        sc.nextLine(); // nettoyage buffer
+        TypePlace typePlace = types[indexType];
+
 
         // Créer un billet
         Billet billet = new Billet(numeroPlace, clientChoisi, evenementChoisi, typePlace);

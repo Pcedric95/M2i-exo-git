@@ -4,15 +4,16 @@ public class Billet {
     private int numeroPlace;
     private Client client;
     private Evenement evenement;
-    private String typePlace; // "standard", "gold", "vip"
+    private TypePlace typePlace; // "standard", "gold", "vip"
 
     // Constructeur
-    public Billet(int numeroPlace, Client client, Evenement evenement, String typePlace) {
+    public Billet(int numeroPlace, Client client, Evenement evenement, TypePlace typePlace) {
         this.numeroPlace = numeroPlace;
         this.client = client;
         this.evenement = evenement;
         this.typePlace = typePlace;
     }
+
 
     // Getters
     public int getNumeroPlace() {
@@ -51,7 +52,7 @@ public class Billet {
     // toString
     @Override
     public String toString() {
-        return "Billet n°" + numeroPlace + " (" + typePlace + ") - " +
-                client.getPrenom() + " " + client.getNom() + " pour " + evenement.getNom();
+        return "Billet n°" + numeroPlace + " - " + typePlace + " - " + client.getPrenom() + " " + client.getNom();
     }
+
 }
