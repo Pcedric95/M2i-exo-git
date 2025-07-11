@@ -1,0 +1,10 @@
+# Fichiers ignorés par défaut
+/shelf/
+/workspace.xml
+# Requêtes du client HTTP à base d'éditeur
+/httpRequests/
+# Chemin du répertoire d'accueil de Maven dépendant de l'environnement
+/mavenHomeManager.xml
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
