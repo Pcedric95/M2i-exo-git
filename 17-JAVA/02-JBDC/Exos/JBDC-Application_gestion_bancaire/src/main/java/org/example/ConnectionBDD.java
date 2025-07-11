@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.example.dao.BankDAO;
+import org.example.model.Customer;
 
 public class ConnectionBDD {
 
@@ -51,5 +53,22 @@ public class ConnectionBDD {
         } catch (SQLException e) {
             System.out.println("Erreur : " + e.getMessage());
         }
+
+
+
+        // Tests BankDAO
+
+        // Test de création d'un client et compte
+        BankDAO bankDAO = new BankDAO();
+        Customer customer = new Customer();
+        customer.setFirstname("Jean");
+        customer.setLastname("Dupont");
+        customer.setPhone("0123456789");
+
+        try {
+            bankDAO.createCustomerAndAccount(customer, 1000.0);
+            System.out.println("Client et compte créés avec succès");
+        } catch (SQLException e) {
+        System.out.println("Erreur : " + e.getMessage());}
     }
 }
