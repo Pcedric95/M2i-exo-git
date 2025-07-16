@@ -1,5 +1,8 @@
 package org.example;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,12 +10,21 @@ import java.util.List;
 @Entity
 public class Region {
 
+    @Setter
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Setter
+    @Getter
     private String nom;
+
+    @Getter
     private double surface;
 
+    @Getter
+    @Setter
     @Enumerated(EnumType.STRING)
     private Climat climat;
 
@@ -25,15 +37,6 @@ public class Region {
     }
 
     // getter setter
-
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public String getNom() { return nom; }
-    public void setNom(String nom) { this.nom = nom; }
-    public double getSurface() { return surface; }
-
-    public Climat getClimat() { return climat; }
-    public void setClimat(Climat climat) { this.climat = climat; }
 
     @Override
     public String toString() {

@@ -1,27 +1,58 @@
 package org.example;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import org.example.Travellog;
+
 
 
 @Entity
 public class Observation {
+    @Setter
+    @Getter
     @Id
     @GeneratedValue
     private Long id;
 
 
     // Une observation pour une espèce, mais une espèce peut avoir plusieurs observations
+    @Setter
+    @Getter
     @ManyToOne
     private Specie specie;
 
+    @Setter
+    @Getter
     private String observerName;
 
+    @Setter
+    @Getter
     private String location;
+
+    @Setter
+    @Getter
     private double latitude;
+
+    @Setter
+    @Getter
     private double longitude;
+
+    @Setter
+    @Getter
     private LocalDate observationDate;
+
+    @Setter
+    @Getter
     private String comment;
+
+    // Bidirectionnel — chaque observation a un seul déplacement
+    @OneToOne(mappedBy = "observation")
+    private Travellog travellog;
+
+
 
     public Observation() {}
 
@@ -32,70 +63,6 @@ public class Observation {
         this.latitude = latitude;
         this.longitude = longitude;
         this.observationDate = observationDate;
-        this.comment = comment;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Specie getSpecie() {
-        return specie;
-    }
-
-    public void setSpecie(Specie specie) {
-        this.specie = specie;
-    }
-
-    public String getObserverName() {
-        return observerName;
-    }
-
-    public void setObserverName(String observerName) {
-        this.observerName = observerName;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public LocalDate getObservationDate() {
-        return observationDate;
-    }
-
-    public void setObservationDate(LocalDate observationDate) {
-        this.observationDate = observationDate;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
         this.comment = comment;
     }
 }

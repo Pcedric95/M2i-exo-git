@@ -1,6 +1,9 @@
 package org.example;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,18 +12,34 @@ import java.util.List;
 public class Specie
 {
 
+    @Getter
+    @Setter
     @Id
     @GeneratedValue
-
     private Long id;
+
+    @Getter
+    @Setter
     private String commonName;
+
+    @Getter
+    @Setter
     private String scientificName;
 
+    @Getter
+    @Setter
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @Setter
+    @Getter
     @ManyToMany(mappedBy = "specieList")
     private List<Region> regionList;
+
+
+    @OneToMany(mappedBy = "specie")
+    private List<Observation> observations;
+
 
     public Specie() {}
 
@@ -30,45 +49,4 @@ public class Specie
         this.category = category;
     }
 
-    // getter setter
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCommonName() {
-        return commonName;
-    }
-
-    public void setCommonName(String commonName) {
-        this.commonName = commonName;
-    }
-
-    public String getScientificName() {
-        return scientificName;
-    }
-
-    public void setScientificName(String scientificName) {
-        this.scientificName = scientificName;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public List<Region> getRegionList() {
-        return regionList;
-    }
-
-    public void setRegionList(List<Region> regionList) {
-        this.regionList = regionList;
-    }
 }
