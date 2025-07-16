@@ -48,6 +48,7 @@ public class Region {
                 '}';
     }
 
+    @Setter
     @ManyToMany
     private List<Specie> specieList;
 

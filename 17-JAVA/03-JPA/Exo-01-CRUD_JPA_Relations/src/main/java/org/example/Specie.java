@@ -49,4 +49,8 @@ public class Specie
         this.category = category;
     }
 
+    public void setRegions(List<Region> region) {
+        this.regionList = region;
+    }
+
 }

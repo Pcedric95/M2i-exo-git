@@ -21,7 +21,7 @@ public class Travellog {
 
     private double distanceKm;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private TravelMode mode;
 
     public Travellog() {}
