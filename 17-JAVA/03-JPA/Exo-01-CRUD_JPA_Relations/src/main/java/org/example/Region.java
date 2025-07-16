@@ -1,5 +1,7 @@
 package org.example;
+
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -42,4 +44,8 @@ public class Region {
                 ", climat=" + climat +
                 '}';
     }
+
+    @ManyToMany
+    private List<Specie> specieList;
+
 }
