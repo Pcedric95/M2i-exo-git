@@ -1,17 +1,41 @@
 package org.example;
 
-//TIP Pour <b>exécuter</b> un code, appuyer sur <shortcut actionId="Run"/> ou
-// cliquez sur licône {0} dans la marge.
+import javax.persistence.*;
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Appuyez sur <shortcut actionId="ShowIntentionActions"/> avec votre curseur dans le texte surligné
-        // pour voir comment IntelliJ IDEA suggère de le corriger.
-        System.out.printf("Hello and welcome!");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("tp_product");
+        EntityManager em = emf.createEntityManager();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Appuyez sur <shortcut actionId="Debug"/> pour commencer à déboguer votre code. Nous avons défini <icon src="AllIcons.Debugger.Db_set_breakpoint"/> point darrêt
-            // pour vous, vous pouvez à tout moment ajouter dautres points darrêt en pressant <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        // Début 'transaction'
+
+        em.getTransaction().begin();
+
+
+        // Création de produits
+        ProductFood food = new ProductFood("Pizza", 10.0, LocalDate.of(2025,05,10));
+        ProductElectronic electronic = new ProductElectronic("iPad", 1499.0, 10);
+        ProductHousing housing = new ProductHousing("Flower pot", 10.0, 0.5, 1.0);
+
+        // persistance
+
+        em.persist(food);
+        em.persist(electronic);
+        em.persist(housing);
+
+        // fin transaction
+        em.getTransaction().commit();
+
+
+        // vérification
+        System.out.println("Produits enregistrés : ");
+        System.out.println(food);
+        System.out.println(electronic);
+        System.out.println(housing);
+
+        // Fermeture
+        em.close();
+        emf.close();
     }
 }
