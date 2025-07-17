@@ -1,4 +1,5 @@
-package com.dao;
+package com.magasin.dao;
+
 
 
 import com.magasin.model.Article;
@@ -33,7 +34,7 @@ public class ArticleDAO {
     }
 
     // Consulter un article avec son ID
-    public Article findbyId(Long id) {
+    public Article findById(Long id) {
         try (Session session = sessionFactory.openSession()) {
             return session.get(Article.class, id);
         }

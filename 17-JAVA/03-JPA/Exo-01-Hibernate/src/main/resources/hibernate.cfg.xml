@@ -16,8 +16,12 @@
         <!-- Afficher les requêtes SQL -->
         <property name="hibernate.show_sql">true</property>
         <!-- Classes entités à mapper -->
-        <mapping class="com.exemple.magasin.model.Article"/>
-        <mapping class="com.exemple.magasin.model.Client"/>
-        <mapping class="com.exemple.magasin.model.Vente"/>
+        <mapping class="com.magasin.model.Article"/>
+        <mapping class="com.magasin.model.ArticleMode"/>
+        <mapping class="com.magasin.model.ArticleNourriture"/>
+        <mapping class="com.magasin.model.ArticleElectronique"/>
+        <mapping class="com.magasin.model.Vente"/>
+        <mapping class="com.magasin.model.StatutVente"/>
+        <mapping class="com.magasin.model.Client"/>
     </session-factory>
 </hibernate-configuration>
