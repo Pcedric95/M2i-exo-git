@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Configuration de la connexion à la base de données -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Magasin</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+        <!-- Dialecte pour MySQL -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+        <!-- Créer automatiquement les tables (utile pour tester) -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!-- Afficher les requêtes SQL -->
+        <property name="hibernate.show_sql">true</property>
+        <!-- Classes entités à mapper -->
+        <mapping class="com.exemple.magasin.model.Article"/>
+        <mapping class="com.exemple.magasin.model.Client"/>
+        <mapping class="com.exemple.magasin.model.Vente"/>
+    </session-factory>
+</hibernate-configuration>
