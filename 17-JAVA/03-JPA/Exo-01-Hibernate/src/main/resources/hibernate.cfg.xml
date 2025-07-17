@@ -6,7 +6,7 @@
     <session-factory>
         <!-- Configuration de la connexion à la base de données -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Magasin</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/magasin</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
         <!-- Dialecte pour MySQL -->
