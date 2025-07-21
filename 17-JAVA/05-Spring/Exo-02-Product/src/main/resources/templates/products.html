@@ -5,13 +5,17 @@
     <title>Produits</title>
 </head>
 <body>
-    <h1>Liste de produits :</h1>
+<h1>Liste de produits :</h1>
 
-    <form action="/products/filter" method="get">
-        <label>Catégorie : <input type="text" name="category"/></label>
-        <label>Prix max : <input type="number" step="0.01" name="maxPrice" /></label>
-        <button type="submit">Filtrer</button>
-    </form>
+<form action="/products/filter" method="get">
+    <label>Catégorie : <input type="text" name="category"/></label>
+    <label>Prix max : <input type="number" step="0.01" name="maxPrice"/></label>
+    <button type="submit">Filtrer</button>
+</form>
+
+
+<h2 th:if="${isFiltered}">Produits filtrés</h2>
+<h2 th:if="${!isFiltered}">Tous les produits</h2>
 
 <ul>
     <li th:each="p : ${products}">
@@ -19,6 +23,7 @@
         (Catégorie : <span th:text="${p.category}"></span> - Prix : <span th:text="${p.price}"></span> €)
     </li>
 </ul>
+<p th:if="${#lists.isEmpty(products)}">Aucun produit trouvé.</p>
 
 </body>
 </html>

@@ -23,6 +23,7 @@ public class ProductController {
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("isFiltered", false);
         return "products"; // templates/products.html
     }
 
@@ -33,6 +34,7 @@ public class ProductController {
             Model model
     ) {
         model.addAttribute("products", productService.filterProducts(category, maxPrice));
+        model.addAttribute("isFiltered", true);
         return "products"; // même page HTML
     }
 
