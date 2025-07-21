@@ -4,6 +4,7 @@ import org.example.exo02product.interfaces.iProductService;
 import org.example.exo02product.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,22 +21,25 @@ public class ProductController {
     }
 
     @GetMapping
-    @ResponseBody
-    public List<Product> getAll() {
-        return productService.getAllProducts();
-    }
-
-    @GetMapping("/{id}")
-    @ResponseBody
-    public Product getById(@PathVariable int id) {
-        return productService.getProductById(id);
+    public String getAll(Model model) {
+        model.addAttribute("products", productService.getAllProducts());
+        return "products"; // templates/products.html
     }
 
     @GetMapping("/filter")
-    @ResponseBody
-    public List<Product> filter(
+    public String filter(
             @RequestParam String category,
-            @RequestParam double maxPrice) {
-        return productService.filterProducts(category, maxPrice);
+            @RequestParam double maxPrice,
+            Model model
+    ) {
+        model.addAttribute("products", productService.filterProducts(category, maxPrice));
+        return "products"; // même page HTML
+    }
+
+    @GetMapping("/{id}")
+    public String getById(@PathVariable int id, Model model) {
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
+        return "product-details"; // => templates/product-details.html
     }
 }
