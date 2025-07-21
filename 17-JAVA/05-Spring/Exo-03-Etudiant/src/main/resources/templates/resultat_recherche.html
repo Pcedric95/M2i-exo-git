@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Résultat recherche</title></head>
+<body>
+<h2>Résultats pour : "<span th:text="${recherche}"></span>"</h2>
+<ul>
+    <li th:each="e : ${resultats}">
+        <span th:text="${e.nom}"></span> <span th:text="${e.prenom}"></span>
+        <a th:href="@{'/etudiant/' + ${e.id}}">Voir détails</a>
+    </li>
+</ul>
+<div th:if="${resultats.size() == 0}">Aucun résultat trouvé</div>
+<a th:href="@{/}">Accueil</a>
+</body>
+</html>
