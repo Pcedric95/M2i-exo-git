@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Modifier une recette</title>
+</head>
+<body>
+<h1>Modifier la recette</h1>
+
+<form th:action="@{/recettes/edit}" th:object="${recette}" method="post">
+    <input type="hidden" th:field="*{id}" />
+
+    <div>
+        <label>Nom :</label>
+        <input type="text" th:field="*{nom}" required />
+    </div>
+
+    <div>
+        <label>Ingrédients :</label>
+        <textarea th:field="*{liste_Ingredients}" rows="3" required></textarea>
+    </div>
+
+    <div>
+        <label>Instructions :</label>
+        <textarea th:field="*{instructions}" rows="4" required></textarea>
+    </div>
+
+    <div>
+        <label>Catégorie :</label>
+        <select th:field="*{categorie}" required>
+            <option th:each="cat : ${categories}"
+                    th:value="${cat}"
+                    th:text="${cat.nom}"
+                    th:selected="${cat.id} == ${recette.categorie.id}">
+            </option>
+        </select>
+    </div>
+
+    <button type="submit">Mettre à jour</button>
+</form>
+
+<p><a th:h
