@@ -1,6 +1,6 @@
 package com.exemple.gestionetudiants.model;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
 public class Etudiant {
