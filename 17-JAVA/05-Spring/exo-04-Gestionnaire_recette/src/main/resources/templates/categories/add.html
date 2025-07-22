@@ -7,17 +7,17 @@
 <h1>Ajouter une catégorie</h1>
 
 <form th:action="@{/categories/add}" th:object="${categorie}" method="post">
-    <div>
-        <label>Nom :</label>
-        <input type="text" th:field="*{nom}" required />
-    </div>
-    <div>
-        <label>Description :</label>
-        <input type="text" th:field="*{description}" required />
-    </div>
+    <label>Nom :</label>
+    <input type="text" th:field="*{nom}" required />
+    <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" style="color:red"></div>
+    <br>
+    <label>Description :</label>
+    <input type="text" th:field="*{description}" required />
+    <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color:red"></div>
+    <br>
     <button type="submit">Enregistrer</button>
 </form>
 
-<p><a th:href="@{/categories}">⬅ Retour à la liste</a></p>
+<a th:href="@{/categories}">Retour à la liste</a>
 </body>
 </html>

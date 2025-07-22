@@ -1,12 +1,12 @@
 package org.example.exo04gestionnaire_recette.controller;
 
 import org.example.exo04gestionnaire_recette.model.Recette;
-import org.example.exo04gestionnaire_recette.model.Categorie;
 import org.example.exo04gestionnaire_recette.service.RecetteService;
 import org.example.exo04gestionnaire_recette.service.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,14 +20,14 @@ public class RecetteController {
     @Autowired
     private CategorieService categorieService;
 
-    // Affiche liste des recettes
+    // Liste des recettes
     @GetMapping
     public String listRecettes(Model model) {
         model.addAttribute("recettes", recetteService.getAll());
         return "recettes/list";
     }
 
-    // Affichage formulaire d'ajout
+    // Formulaire d'ajout
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("recette", new Recette());
@@ -35,14 +35,18 @@ public class RecetteController {
         return "recettes/add";
     }
 
-    // traitement formulaire d'ajout en post
+    // Traitement ajout avec validation
     @PostMapping("/add")
-    public String add(@Validated Recette recette) {
+    public String add(@ModelAttribute @Validated Recette recette, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("categories", categorieService.getAll());
+            return "recettes/add";
+        }
         recetteService.add(recette);
         return "redirect:/recettes";
     }
 
-    //  affichage formulaire de modifs
+    // Formulaire d'édition
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable int id, Model model) {
         recetteService.findById(id).ifPresent(r -> {
@@ -52,14 +56,18 @@ public class RecetteController {
         return "recettes/edit";
     }
 
-    // traitement modifications
+    //  Traitement modification avec validation
     @PostMapping("/edit")
-    public String edit(@ModelAttribute @Validated Recette recette) {
+    public String edit(@ModelAttribute @Validated Recette recette, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("categories", categorieService.getAll());
+            return "recettes/edit";
+        }
         recetteService.update(recette);
         return "redirect:/recettes";
     }
 
-    // Suppression
+    //  Suppression
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id) {
         recetteService.delete(id);
