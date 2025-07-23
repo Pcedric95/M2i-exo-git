@@ -30,11 +30,7 @@
     <div>
         <label>Catégorie :</label>
         <select th:field="*{categorie}" required>
-            <option th:each="cat : ${categories}"
-                    th:value="${cat}"
-                    th:text="${cat.nom}"
-                    th:selected="${cat.id} == ${recette.categorie.id}">
-            </option>
+            <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.nom}"></option>
         </select>
         <div th:if="${#fields.hasErrors('categorie')}" th:errors="*{categorie}" style="color:red"></div>
     </div>
@@ -42,4 +38,6 @@
     <button type="submit">Mettre à jour</button>
 </form>
 
-<p><a th:h
+<p><a th:href="@{/recettes}">Retour à la liste</a></p>
+</body>
+</html>

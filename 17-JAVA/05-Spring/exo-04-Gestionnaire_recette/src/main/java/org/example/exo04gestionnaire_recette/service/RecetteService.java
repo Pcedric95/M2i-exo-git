@@ -1,44 +1,36 @@
 package org.example.exo04gestionnaire_recette.service;
 
+import org.example.exo04gestionnaire_recette.repository.RecetteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.example.exo04gestionnaire_recette.model.Recette;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class RecetteService {
-    private final List<Recette> recetteList = new ArrayList<>();
-    private final AtomicInteger idGenerator = new AtomicInteger(0);
+
+    @Autowired
+    private RecetteRepository recetteRepository;
 
     public List<Recette> getAll() {
-        return recetteList;
+        return recetteRepository.findAll();
     }
 
     public Recette add(Recette recette) {
-        if (recette.getId() == 0) {
-            recette.setId(idGenerator.incrementAndGet());
-            recetteList.add(recette);
-        }
-        return recette;
+        return recetteRepository.save(recette);
     }
 
     public Optional<Recette> findById(int id) {
-        return recetteList.stream().filter(r -> r.getId() == id).findFirst();
+        return recetteRepository.findById(id);
     }
 
-    public void update(Recette updatedRecette) {
-        findById(updatedRecette.getId()).ifPresent(r -> {
-            r.setNom(updatedRecette.getNom());
-            r.setListe_Ingredients(updatedRecette.getListe_Ingredients());
-            r.setInstructions(updatedRecette.getInstructions());
-            r.setCategorie(updatedRecette.getCategorie());
-        });
+    public Recette update(Recette recette) {
+        return recetteRepository.save(recette);
     }
 
     public void delete(int id) {
-        recetteList.removeIf(r -> r.getId() == id);
+        recetteRepository.deleteById(id);
     }
 }

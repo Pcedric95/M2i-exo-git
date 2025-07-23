@@ -29,7 +29,7 @@
     <div>
         <label>Catégorie :</label>
         <select th:field="*{categorie}" required>
-            <option th:each="cat : ${categories}" th:value="${cat}" th:text="${cat.nom}"></option>
+            <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.nom}"></option>
         </select>
         <div th:if="${#fields.hasErrors('categorie')}" th:errors="*{categorie}" style="color:red"></div>
     </div>
