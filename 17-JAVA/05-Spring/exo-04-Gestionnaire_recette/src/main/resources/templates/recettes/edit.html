@@ -1,43 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Modifier une recette</title>
-</head>
+<head th:replace="fragments/layout :: head"></head>
 <body>
-<h1>Modifier la recette</h1>
-
-<form th:action="@{/recettes/edit}" th:object="${recette}" method="post">
-    <input type="hidden" th:field="*{id}" />
-
-    <div>
-        <label>Nom :</label>
-        <input type="text" th:field="*{nom}" required />
-        <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" style="color:red"></div>
-    </div>
-
-    <div>
-        <label>Ingrédients :</label>
-        <textarea th:field="*{liste_Ingredients}" rows="3" required></textarea>
-        <div th:if="${#fields.hasErrors('liste_Ingredients')}" th:errors="*{liste_Ingredients}" style="color:red"></div>
-    </div>
-
-    <div>
-        <label>Instructions :</label>
-        <textarea th:field="*{instructions}" rows="4" required></textarea>
-        <div th:if="${#fields.hasErrors('instructions')}" th:errors="*{instructions}" style="color:red"></div>
-    </div>
-
-    <div>
-        <label>Catégorie :</label>
-        <select th:field="*{categorie}" required>
-            <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.nom}"></option>
-        </select>
-        <div th:if="${#fields.hasErrors('categorie')}" th:errors="*{categorie}" style="color:red"></div>
-    </div>
-
-    <button type="submit">Mettre à jour</button>
-</form>
-
-<p><a th:href="@{/recettes}">Retour à la liste</a></p>
+<div th:replace="fragments/layout :: body(~{::section})">
+    <section>
+        <h2>Modifier la recette</h2>
+        <form th:action="@{/recettes/edit}" th:object="${recette}" method="post" class="mt-4">
+            <input type="hidden" th:field="*{id}" />
+            <div class="mb-3">
+                <label class="form-label">Nom :</label>
+                <input type="text" th:field="*{nom}" class="form-control" required />
+                <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="text-danger"></div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ingrédients :</label>
+                <textarea th:field="*{liste_Ingredients}" rows="3" class="form-control" required></textarea>
+                <div th:if="${#fields.hasErrors('liste_Ingredients')}" th:errors="*{liste_Ingredients}" class="text-danger"></div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Instructions :</label>
+                <textarea th:field="*{instructions}" rows="4" class="form-control" required></textarea>
+                <div th:if="${#fields.hasErrors('instructions')}" th:errors="*{instructions}" class="text-danger"></div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Catégorie :</label>
+                <select th:field="*{categorie}" class="form-select" required>
+                    <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.nom}" th:selected="${cat.id} == ${recette.categorie.id}"></option>
+                </select>
+                <div th:if="${#fields.hasErrors('categorie')}" th:errors="*{categorie}" class="text-danger"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+        </form>
+    </section>
+</div>
 </body>
 </html>

@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Ajouter une catégorie</title>
-</head>
+<head th:replace="fragments/layout :: head"></head>
 <body>
-<h1>Ajouter une catégorie</h1>
-
-<form th:action="@{/categories/add}" th:object="${categorie}" method="post">
-    <label>Nom :</label>
-    <input type="text" th:field="*{nom}" required />
-    <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" style="color:red"></div>
-    <br>
-    <label>Description :</label>
-    <input type="text" th:field="*{description}" required />
-    <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color:red"></div>
-    <br>
-    <button type="submit">Enregistrer</button>
-</form>
-
-<a th:href="@{/categories}">Retour à la liste</a>
+<div th:replace="fragments/layout :: body(~{::section})">
+    <section>
+        <h2>Ajouter une catégorie</h2>
+        <form th:action="@{/categories/add}" th:object="${categorie}" method="post" class="mt-4">
+            <div class="mb-3">
+                <label class="form-label">Nom :</label>
+                <input type="text" th:field="*{nom}" class="form-control" required />
+                <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="text-danger"></div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Description :</label>
+                <input type="text" th:field="*{description}" class="form-control" required />
+                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </form>
+    </section>
+</div>
 </body>
 </html>

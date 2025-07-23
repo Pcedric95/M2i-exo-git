@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Accueil</title>
-</head>
+<head th:replace="fragments/layout :: head"></head>
 <body>
-<h1>Accueil</h1>
-<ul>
-    <li><a th:href="@{/categories}">Voir les catégories</a></li>
-    <li><a th:href="@{/recettes}">Voir les recettes</a></li>
-</ul>
+<div th:replace="fragments/layout :: body(~{::section})">
+    <section>
+        <h2>Bienvenue sur le gestionnaire de recettes</h2>
+        <div class="mt-4">
+            <a class="btn btn-outline-primary me-2" th:href="@{/categories}">Gérer les catégories</a>
+            <a class="btn btn-outline-primary" th:href="@{/recettes}">Gérer les recettes</a>
+        </div>
+    </section>
+</div>
 </body>
 </html>

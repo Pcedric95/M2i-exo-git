@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Modifier une catégorie</title>
-</head>
+<head th:replace="fragments/layout :: head"></head>
 <body>
-<h1>Modifier la catégorie</h1>
-
-<form th:action="@{/categories/edit}" th:object="${categorie}" method="post">
-    <input type="hidden" th:field="*{id}" /> <!-- Champ caché pour conserver l'ID -->
-
-    <div>
-        <label>Nom :</label>
-        <input type="text" th:field="*{nom}" required />
-        <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" style="color:red"></div>
-    </div>
-    <div>
-        <label>Description :</label>
-        <input type="text" th:field="*{description}" required />
-        <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" style="color:red"></div>
-    </div>
-    <button type="submit">Mettre à jour</button>
-</form>
-
-<p><a th:href="@{/categories}">⬅ Retour à la liste</a></p>
+<div th:replace="fragments/layout :: body(~{::section})">
+    <section>
+        <h2>Modifier la catégorie</h2>
+        <form th:action="@{/categories/edit}" th:object="${categorie}" method="post" class="mt-4">
+            <input type="hidden" th:field="*{id}" />
+            <div class="mb-3">
+                <label class="form-label">Nom :</label>
+                <input type="text" th:field="*{nom}" class="form-control" required />
+                <div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="text-danger"></div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Description :</label>
+                <input type="text" th:field="*{description}" class="form-control" required />
+                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+        </form>
+    </section>
+</div>
 </body>
 </html>
