@@ -42,7 +42,7 @@ public class CartService {
     }
 
     // 3 - Retirer item du panier avec ID
-    public void CartItemById(UUID cartItemId) {
+    public void removeCartItem(UUID cartItemId) {
         cartItemRepository.deleteById(cartItemId);
     }
 

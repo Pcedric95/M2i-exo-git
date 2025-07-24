@@ -17,5 +17,31 @@ public class FurnitureController {
     public FurnitureController(FurnitureService furnitureService) {
         this.furnitureService = furnitureService;
     }
-    
+
+    // GET /api/furniture
+    @GetMapping
+    public List<Furniture> getAllFurniture() {
+        return furnitureService.getAllFurniture();
+    }
+
+    // GET /api/furniture/{id}
+    @GetMapping("/{id}")
+    public ResponseEntity<Furniture> getFurnitureById(@PathVariable UUID id) {
+        return furnitureService.getFurnitureById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    // POST /api/furniture
+    @PostMapping
+    public Furniture createFurniture(@RequestBody Furniture furniture) {
+        return furnitureService.saveFurniture(furniture);
+    }
+
+    // DELETE /api/furniture/{id}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteFurniture(@PathVariable UUID id) {
+        furnitureService.deleteFurniture(id);
+        return ResponseEntity.noContent().build();
+    }
 }
