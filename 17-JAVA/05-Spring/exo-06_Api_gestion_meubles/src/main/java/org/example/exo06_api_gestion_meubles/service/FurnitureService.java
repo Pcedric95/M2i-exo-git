@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class FurnitureService {
 
     private final FurnitureRepository furnitureRepository;
