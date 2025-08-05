@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.environement.dto.travellogs.TravellogDtoResponse;
 import org.example.environement.entity.enums.TravelMode;
 
 @Entity
@@ -39,4 +40,14 @@ public class Travellog {
         };
         this.estimatedCo2Kg = this.distanceKm * facteurEmission;
     }
+
+    public TravellogDtoResponse entityToDto() {
+        return TravellogDtoResponse.builder()
+                .id(this.getId())
+                .distanceKm(this.getDistanceKm())
+                .mode(this.getMode().toString()) //
+                .estimatedCo2Kg(this.getEstimatedCo2Kg())
+                .build();
+    }
+
 }
