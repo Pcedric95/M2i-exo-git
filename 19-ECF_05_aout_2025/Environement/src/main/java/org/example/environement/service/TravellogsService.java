@@ -13,6 +13,8 @@ import java.util.List;
 @Service
 public class TravellogsService {
 
+    // Quelques complications dans mon service, je n'arrive pas à voir où je bloque
+
     private final TravellogRepository travellogRepository;
     private final ObservationRepository ObservationRepository ;
 
@@ -23,18 +25,25 @@ public class TravellogsService {
     }
 
 
+    // Je n’ai pas réussi à calculer les stats, mais j’ai compris qu’il fallait parcourir la liste
+    // des Travellogs, additionner les distances et CO2 pour renvoyer dans le DTO.
+
     public TravellogDtoStat getStat (long id){
         List<Travellog> travellogs = travellogRepository.findTravellogByObservation_Id(id);
         TravellogDtoStat travellogDtoStat = new TravellogDtoStat();
         return travellogDtoStat;
     }
 
+    // Je voulais renvoyer une liste de TravellogDtoResponse, mais je n’ai pas réussi à faire le mapping.
+
     public List<TravellogDtoResponse> get(int i) {
         return travellogRepository.findAll();
     }
 
 
-    // Je sais qu'il faut retourner quelque chose mais je n'arrive pas à déterminer quoi ici
+// Méthode non terminée. Je sais qu’il faut filtrer les Travellogs d’un utilisateur sur le mois passé,
+// mais je n'ai pas su comment faire avec les dates et les utilisateurs.
+
     public List<TravellogDtoStat> getStatForUserLastMonth (String user){;
 
     }

@@ -20,23 +20,37 @@ public class ObservationController {
         this.observationService = observationService;
     }
 
+
     @GetMapping("/species/{speciesId}")
     public ResponseEntity<List<ObservationDtoResponse>> getObservationsBySpecies(@PathVariable long speciesId){
-
+        List<ObservationDtoResponse> observations = observationService.getBySpecie(speciesId);
+        return ResponseEntity.ok(observations);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<ObservationDtoResponse> getObservationById(@PathVariable long id){}
+    public ResponseEntity<ObservationDtoResponse> getObservationById(@PathVariable long id){
+        return ResponseEntity.ok(observationService.get(id));
+    }
 
-    @GetMapping("/byLocation}")
-    public ResponseEntity<List<ObservationDtoResponse>> getObservationsByLocation(@RequestParam String location){}
+    @GetMapping("/byLocation")
+    public ResponseEntity<List<ObservationDtoResponse>> getObservationsByLocation(@RequestParam String location){
+        return ResponseEntity.ok(observationService.getByLocation(location));
+    }
 
     @PostMapping
-    public ResponseEntity<ObservationDtoResponse> create(@RequestBody ObservationDtoReceive observationDto){}
+    public ResponseEntity<ObservationDtoResponse> create(@RequestBody ObservationDtoReceive observationDto){
+        return ResponseEntity.ok(observationService.create(observationDto));
+    }
+
+
+
 
     @GetMapping
-    public ResponseEntity<List<ObservationDtoResponse>> getAll(){}
+    public ResponseEntity<List<ObservationDtoResponse>> getAll(){
+        List<ObservationDtoResponse> observation = ObservationService.get(pageSize,pageNumber);
+        return ResponseEntity.ok(observation);
+    }
 
 
 
