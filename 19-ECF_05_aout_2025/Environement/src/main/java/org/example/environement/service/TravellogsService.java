@@ -20,12 +20,12 @@ public class TravellogsService {
 
 
     public TravellogDtoStat getStat (long id){
-
+        return ;
     }
 
     public List<TravellogDtoResponse> get(int i) {
     }
-    
+
     public List<TravellogDtoStat> getStatForUserLastMonth (String user){
 
     }

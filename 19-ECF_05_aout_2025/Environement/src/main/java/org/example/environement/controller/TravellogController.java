@@ -37,6 +37,6 @@ public class TravellogController {
 
     @GetMapping("/user/{name}")
     public ResponseEntity<Map<String,TravellogDtoStat>> getTravelStatForUserOnLAstMonth (@PathVariable String name){
-        return ResponseEntity.ok(travellogsService.getStatForUserLastMonth(name));
+        return ResponseEntity.ok((Map<String, TravellogDtoStat>) travellogsService.getStatForUserLastMonth(name));
     }
 }
