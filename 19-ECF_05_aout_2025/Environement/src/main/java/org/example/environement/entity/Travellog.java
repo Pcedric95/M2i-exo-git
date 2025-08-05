@@ -30,6 +30,8 @@ public class Travellog {
 
     private double estimatedCo2Kg;
 
+
+    // calcul C02
     public void calculateCO2(){
         double facteurEmission = switch (getMode()) {
             case WALKING , BIKE -> 0;
