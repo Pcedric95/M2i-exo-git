@@ -36,6 +36,6 @@ public class TravellogsService {
 
     // Je sais qu'il faut retourner quelque chose mais je n'arrive pas à déterminer quoi ici
     public List<TravellogDtoStat> getStatForUserLastMonth (String user){;
-        
+
     }
 }
