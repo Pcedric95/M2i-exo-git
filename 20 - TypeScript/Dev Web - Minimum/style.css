@@ -1,0 +1,44 @@
+/* Mes couleurs */
+:root {
+  --bg: #ffffff;
+  --fg: #222222;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --danger: #dc2626;
+  --card: #f3f4f6;
+  --border: #e5e7eb;
+}
+
+.theme-dark {
+  --bg: #0f172a;
+  --fg: #e5e7eb;
+  --muted: #94a3b8;
+  --primary: #60a5fa;
+  --danger: #f87171;
+  --card: #111827;
+  --border: #1f2937;
+}
+
+/* Reset */
+* { box-sizing: border-box; }
+
+/* Corps du document */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100dvh;
+  padding-bottom: 64px; /* place pour le switcher */
+}
+
+/* Conteneur principal */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+h1 { margin: 16px 0 24px; }
+.section { margin: 16px 0 24px; }
+

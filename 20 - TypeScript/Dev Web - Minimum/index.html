@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>TP DOM - Profil utilisateur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./script.js" defer></script>
+</head>
+
+<body class="theme-light">
+    <main class="container" id="app">
+        <h1>Créer mon profil</h1>
+
+        <!-- Description -->
+        <section class="section">
+            <h2>Description</h2>
+            <p id="descriptionText" class="description"></p>
+            <button id="changeDescriptionBtn">Changer la description</button>
+        </section>
+
+        <!-- Pseudo -->
+        <section class="section">
+            <h2>Pseudo</h2>
+            <input id="pseudoInput" type="text" placeholder="Entrez votre pseudo (ex: PaulMirabel, Guigui)" autocomplete="off">
+            <small id="pseudoError" class="error"></small>
+        </section>
+
+        <!-- Avatar -->
+        <section class="section">
+            <h2>Choisir un Avatar</h2>
+            <div id="avatarList" class="avatars">
+                <button class="avatar" data-avatar="1" aria-pressed="false">
+                    <img src="" alt="Avatar 1">
+                </button>
+                <button class="avatar" data-avatar="2" aria-pressed="false">
+                    <img src="" alt="Avatar 2">
+                </button>
+                <button class="avatar" data-avatar="3" aria-pressed="false">
+                    <img src="" alt="Avatar 3">
+                </button>
+                <button class="avatar" data-avatar="4" aria-pressed="false">
+                    <img src="" alt="Avatar 4">
+                </button>
+                <button class="avatar" data-avatar="5" aria-pressed="false">
+                    <img src="" alt="Avatar 5">
+                </button>
+            </div>
+        </section>
+
+        <!-- Action -->
+        <section class="section actions">
+
+        </section>
+
+        <!-- Sélection thèmes -->
+        <section>
+            <button id="themeToggle">Thème: Light</button>
+        </section>
+    </main>
+
+    <footer class="theme-switcher">
+        <button id="themeToggle" type="button" aria-label="Changer de thème">Changer de thème</button>
+    </footer>
+
+    <template id="userProfile">
+        <section class="card">
+            <div class="card-avatar">
+                <img id="cardAvatar" alt="Avatar choisi">
+            </div>
+            <div class="card-body">
+                <h3 id="cardPseudo"></h3>
+                <p id="cardDescription"></p>
+                <button id="resetBtn" type="button">Recommencer</button>
+            </div>
+        </section>
+    </template>
+
+</html>
