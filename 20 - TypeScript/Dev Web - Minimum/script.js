@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const pseudoInput = document.getElementById('pseudoInput');
   const pseudoError = document.getElementById('pseudoError');
   const avatarList = document.getElementById('avatarList');
-  const nextBtn = document.getElementById('nextBtn');
+  const nextBtn = document.getElementById('nextButton');
   const appRoot = document.getElementById('app');
-  const cardTpl = document.getElementById('profileCardTemplate');
+  const cardTpl = document.getElementById('userProfile');
 
   /* 1 - Etat des descriptions */
 

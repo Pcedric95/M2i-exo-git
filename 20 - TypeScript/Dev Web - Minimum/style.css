@@ -94,6 +94,12 @@ input[type="text"]{
     color: var(--fg);
     outline: none;
 }
+/* Styles pour le mode sombre */
+.theme-dark input[type="text"] {
+    background: var(--card); /* Couleur de fond en mode sombre */
+    color: var(--fg); /* Couleur du texte en mode sombre */
+    border: 1px solid var(--border); /* Couleur de bordure en mode sombre */
+}
 
 
 .avatars {
