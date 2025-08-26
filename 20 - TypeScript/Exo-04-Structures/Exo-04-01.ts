@@ -1,3 +1,4 @@
+
 let nombres: number[] = [10, 20, 30];
 
 nombres.push(40);
