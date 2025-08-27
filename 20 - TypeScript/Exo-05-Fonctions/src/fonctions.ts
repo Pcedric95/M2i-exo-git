@@ -113,3 +113,16 @@ const arrondirAuCentime = function(n: number): number {
     return Math.round(n * 100) / 100;
 }
 
+// 2 : Appliquer une réduction
+const appliquerReduction = (prix: number): number => prix * 0.9;
+
+
+
+// 3 : --> Correction du formateur
+const upperProduits = (liste: string[]): string[] => liste.map((s) => s.toUpperCase());
+
+
+// 4 : Créer un contact --> Correction du formateur
+const creerContact = (nom: string): {id: string; nom: string} => ({
+    id : Date.now().toString(), nom
+});
