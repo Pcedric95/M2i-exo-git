@@ -137,4 +137,4 @@ export const podometre = {
   // fléchée : n’utilisez PAS this ici
   incrementArrow: (): number => {  return podometre.pas + 1 /* renvoie la nouvelle valeur à partir d’un état interne simulé */ }
 };
-
+// incrementArrow : l'accès se fait via le nom de l'objet et donc sa propriété
