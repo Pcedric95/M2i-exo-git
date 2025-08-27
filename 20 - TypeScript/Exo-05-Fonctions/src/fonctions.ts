@@ -160,3 +160,25 @@ function erreurFatale(message: string): never {
 async function getMeteo(ville: string): Promise<{ ville: string; degres: number }> {
     return Promise.resolve{ ville: ville, degres: 21 };
 }
+
+
+
+// Exercice 06 : Types de fonctions & callbacks (dépenses mensuelles)
+
+// 1 : 
+type Critere<T> = (v: T) => boolean;
+
+// 2 :
+function filtrer<T>(arr: T[], crit: Critere<T>): T[] {
+    const resultat: T[] = [];
+
+
+    for (const element of arr){
+        if(crit(element)){
+            resultat.push(element)
+        }
+    }
+    return resultat;
+}
+
+// 3 : 
