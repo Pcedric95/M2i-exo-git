@@ -138,3 +138,25 @@ export const podometre = {
   incrementArrow: (): number => {  return podometre.pas + 1 /* renvoie la nouvelle valeur à partir d’un état interne simulé */ }
 };
 // incrementArrow : l'accès se fait via le nom de l'objet et donc sa propriété
+
+
+// Exercice 5 : Typages des retours ("void", "never", "Promise<T>") (journal météo)
+
+// 1 : logAction
+
+function logAction(message: string): void {
+    console.log("Partie faire le tour du monde : ", message);
+}
+
+
+// 2: erreurfatale
+
+function erreurFatale(message: string): never {
+    throw new Error("Erreur fatale : " + message);
+}
+
+// 3 : getMeteo
+
+async function getMeteo(ville: string): Promise<{ ville: string; degres: number }> {
+    return Promise.resolve{ ville: ville, degres: 21 };
+}
