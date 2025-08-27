@@ -158,7 +158,7 @@ function erreurFatale(message: string): never {
 // 3 : getMeteo
 
 async function getMeteo(ville: string): Promise<{ ville: string; degres: number }> {
-    return Promise.resolve{ ville: ville, degres: 21 };
+    return Promise.resolve({ ville: ville, degres: 21 });
 }
 
 
@@ -182,3 +182,43 @@ function filtrer<T>(arr: T[], crit: Critere<T>): T[] {
 }
 
 // 3 : 
+
+function depenseEstGrande(n: number): boolean {
+    return n >= 100;
+}
+
+// 4: minLongueur ---> Correction 
+
+function minLongueur(min: number): (s: string) => boolean {
+    return (s) => s.length >= min;
+}
+
+filtrer([50, 120, 30], depenseEstGrande);
+filtrer(["café", "épicerie"], minLongueur(7))
+
+// Exercice 7 -- correction formateur
+
+// --------------------------------------
+
+// Exercice 8 : Surcharges (heures & minutes)
+
+export function convertirHeure(hhmm: string): number;   // "13:45" -> 825 (minutes)
+export function convertirHeure(minutes: number): string; // 825 -> "13:45"
+export function convertirHeure(v: number | string): number | string {
+  // implémentation unique
+
+  if (typeof v === "string") {
+    const [hh, mm] = v.split(":").map(Number);
+    return hh * 60 + mm;
+  }else{
+    const hh = Math.floor(v / 60);
+    const mm = v % 60;
+
+    const hhFormatte = hh.toString().padStart(2, '0');
+    const mmFormatte = mm.toString().padStart(2, '0');
+
+    return `${hhFormatte}:${mmFormatte}`;
+
+    // Appris padStart
+  }
+}
