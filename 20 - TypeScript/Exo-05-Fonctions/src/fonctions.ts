@@ -126,3 +126,15 @@ const upperProduits = (liste: string[]): string[] => liste.map((s) => s.toUpperC
 const creerContact = (nom: string): {id: string; nom: string} => ({
     id : Date.now().toString(), nom
 });
+
+// Exercice 4 : 'this' et méthodes
+
+export const podometre = {
+  pas: 0,
+  increment(): void { 
+    this.pas += 1 /* augmente this.pas */ },
+  reset(): void { this.pas = 0 /* remet à 0 */ },
+  // fléchée : n’utilisez PAS this ici
+  incrementArrow: (): number => {  return podometre.pas + 1 /* renvoie la nouvelle valeur à partir d’un état interne simulé */ }
+};
+
