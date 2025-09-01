@@ -6,8 +6,6 @@ const Search = (props) => {
         <div>
             <label htmlFor="search">Search:</label>
             <input id="search" type="text" onChange={props.onSearch} />
-            <label htmlFor="author">Auteur :</label>
-            <input id="author" type="text" onChange={props.onAuthorSearch} />
         </div>
     );
 };
@@ -42,13 +40,10 @@ const App = () => {
 
     // state remonté ici
     const [searchTerm, setSearchTerm] = useState("");
-    const [authorTerm, setAuthorTerm] = useState("");
 
     // filtrer la liste
     const searchedStories = stories.filter((story) =>
-        story.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        story.author.toLowerCase().includes(authorTerm.toLowerCase())
-    );
+        story.title.toLowerCase().includes(searchTerm.toLowerCase()) )
 
     // A - fonction définie dans App
     const handleSearch = (event) => {
@@ -56,19 +51,12 @@ const App = () => {
         setSearchTerm(event.target.value)
     }
 
-    const handleAuthorSearch = (event) => {
-        setAuthorTerm(event.target.value);
-    }
-    
-
     return (
         <div>
             <h1>Hello React!</h1>
             {/* B- passage de la fonction en props */}
-            <Search onSearch={handleSearch} onAuthorSearch={handleAuthorSearch} />
+            <Search onSearch={handleSearch} />
             <hr />
-            <p>Recherche actuelle : {searchTerm}</p>
-            <p>Auteur recherché : {authorTerm}</p>
             <List list={searchedStories} />
         </div>
     );
