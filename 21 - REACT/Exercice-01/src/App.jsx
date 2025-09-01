@@ -8,6 +8,8 @@ const Search = (props) => {
             <input id="search" type="text" onChange={props.onSearch} />
             <label htmlFor="author">Auteur :</label>
             <input id="author" type="text" onChange={props.onAuthorSearch} />
+            <label htmlFor="points">Points minimum :</label>
+            <input id="points" type="number" onChange={props.onPointsSearch} />
         </div>
     );
 };
@@ -43,11 +45,16 @@ const App = () => {
     // state remonté ici
     const [searchTerm, setSearchTerm] = useState("");
     const [authorTerm, setAuthorTerm] = useState("");
+    const [minPoints, setMinPoints] = useState(0);
 
+    const handlePointsSearch = (event) => {
+        setMinPoints(event.target.value);
+    };
     // filtrer la liste
     const searchedStories = stories.filter((story) =>
         story.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        story.author.toLowerCase().includes(authorTerm.toLowerCase())
+        story.author.toLowerCase().includes(authorTerm.toLowerCase())&&
+        story.points >= minPoints
     );
 
     // A - fonction définie dans App
@@ -65,10 +72,12 @@ const App = () => {
         <div>
             <h1>Hello React!</h1>
             {/* B- passage de la fonction en props */}
-            <Search onSearch={handleSearch} onAuthorSearch={handleAuthorSearch} />
+            <Search onSearch={handleSearch} onAuthorSearch={handleAuthorSearch} onPointsSearch={handlePointsSearch} />
             <hr />
             <p>Recherche actuelle : {searchTerm}</p>
-            <p>Auteur recherché : {authorTerm}</p>
+            <p>Auteur recherché : {authorTerm} | 
+                Points minimum : {minPoints}
+            </p>
             <List list={searchedStories} />
         </div>
     );
