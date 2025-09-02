@@ -33,6 +33,8 @@ function App() {
   }
 
   // 3 - Utiliser un effet pour stocker la valeur dans le navigateur
+  // Le Hook useEffect est essentiel pour la persistance des données
+  // le tableau [searchTerm] est la "dépendance" qui dit à React de relancer l'effet.
   useEffect(() => {localStorage.setItem('searchTerm', searchTerm);}, [searchTerm]);
 
 
@@ -44,6 +46,7 @@ function App() {
 
   // Composant de liste
   const List = ({list}) => {
+
     return (
       <ul>
         {list.map((item) => ( 
@@ -61,16 +64,19 @@ function App() {
     <>
       <h1>Mini Pokédex</h1>
 
-      <Search searchTerm={searchTerm} onSearch={handleSearch} />
+    {/* Passer le terme de recherche (et donc valeur) et la fonction de mise à jour (son action) */}
+      <Search searchTerm={searchTerm} onSearch={handleSearch} /> 
 
       {/* Composant de liste pour les Pokémon filtrés et affichage si non trouvé */}
       <List list={filteredPokemons} />
       {filteredPokemons.length === 0 && <p>Aucun Pokémon trouvé.</p>}
     </>
+  
   )
 }
 
-// Composant de recherche
+// Composant de recherche responsable de l'affichage de l'input recherche
+// N'utilise pas l'état mais les props pour lire la valeur et envoyer les changements
 const Search = ({ searchTerm, onSearch }) => {
   return (
 
@@ -86,6 +92,7 @@ const Search = ({ searchTerm, onSearch }) => {
         onChange={onSearch}
       />
     </div>
+
   );
 }
 
