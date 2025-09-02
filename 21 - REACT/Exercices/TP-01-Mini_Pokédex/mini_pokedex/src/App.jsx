@@ -64,14 +64,12 @@ function App() {
 
   return (
     <>
-      <h1>Mini Pokédex</h1>
-    {/* Callback handler */}
-    {/* Passer le terme de recherche (la valeur) et la fonction de mise à jour (son action) */}
-      <Search searchTerm={searchTerm} onSearch={handleSearch} /> 
-
-      {/* Composant de liste pour les Pokémon filtrés et affichage si non trouvé */}
-      <List list={filteredPokemons} />
-      {filteredPokemons.length === 0 && <p>Aucun Pokémon trouvé.</p>}
+      <div className="pokedex-card">
+        <h1>Mini Pokédex</h1>
+        <Search searchTerm={searchTerm} onSearch={handleSearch} />
+        <List list={filteredPokemons} />
+        {filteredPokemons.length === 0 && <p>Aucun Pokémon trouvé.</p>}
+    </div>
     </>
   
   )
