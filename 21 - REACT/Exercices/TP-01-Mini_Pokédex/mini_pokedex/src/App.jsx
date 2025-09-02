@@ -41,12 +41,14 @@ function App() {
     pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+
+  // Composant de liste
   const List = ({list}) => {
     return (
       <ul>
-        {list.map((item) => (
+        {list.map((item) => ( 
           <li key={item.name}>
-            {item.name} ({item.type})
+            {item.name} ({item.type}) {/*Afficher : nom Pokémon + type */}
           </li>
           
         ))}
@@ -60,18 +62,21 @@ function App() {
       <h1>Mini Pokédex</h1>
 
       <Search searchTerm={searchTerm} onSearch={handleSearch} />
-    
-      {/* Composant de liste */}
+
+      {/* Composant de liste pour les Pokémon filtrés et affichage si non trouvé */}
       <List list={filteredPokemons} />
       {filteredPokemons.length === 0 && <p>Aucun Pokémon trouvé.</p>}
     </>
   )
 }
 
-
+// Composant de recherche
 const Search = ({ searchTerm, onSearch }) => {
   return (
+
     <div>
+
+      {/* Champ de recherche */}
       <label htmlFor="search">Rechercher un Pokémon :</label>
       <input
         id='search'
