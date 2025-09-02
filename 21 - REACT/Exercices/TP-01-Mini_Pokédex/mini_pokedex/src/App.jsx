@@ -49,7 +49,9 @@ function App() {
 
     return (
       <ul>
+        {/*  */}
         {list.map((item) => ( 
+          // Donner une clé unique à chaque élément de la liste
           <li key={item.name}>
             {item.name} ({item.type}) {/*Afficher : nom Pokémon + type */}
           </li>
@@ -63,8 +65,8 @@ function App() {
   return (
     <>
       <h1>Mini Pokédex</h1>
-
-    {/* Passer le terme de recherche (et donc valeur) et la fonction de mise à jour (son action) */}
+    {/* Callback handler */}
+    {/* Passer le terme de recherche (la valeur) et la fonction de mise à jour (son action) */}
       <Search searchTerm={searchTerm} onSearch={handleSearch} /> 
 
       {/* Composant de liste pour les Pokémon filtrés et affichage si non trouvé */}
@@ -89,7 +91,7 @@ const Search = ({ searchTerm, onSearch }) => {
         type="text"
         placeholder="Rechercher un Pokémon..."
         value={searchTerm}
-        onChange={onSearch}
+        onChange={onSearch} // Callback handler
       />
     </div>
 
