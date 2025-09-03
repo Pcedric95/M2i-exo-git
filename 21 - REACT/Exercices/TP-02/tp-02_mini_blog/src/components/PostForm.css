@@ -1,12 +1,12 @@
 .form-card {
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  padding: 20px;
-  max-width: 500px;
+  padding: 15px 40px 15px 25px;
+  max-width: 400px;
   margin: 20px auto;
   background-color: #ffffff;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .form-card:hover {
