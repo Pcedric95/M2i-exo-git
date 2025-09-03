@@ -1,10 +1,15 @@
-import React from 'react';
+import PostCard from "../components/PostCard";
 
 const PostsPage = ({ posts }) => {
   return (
     <div>
+
+      <h2> Liste des articles ({posts.length}) </h2>
+      
       {posts.length > 0 ? (
-        <p>Il y a {posts.length} articles disponibles.</p>
+        posts.map(post => (
+          <PostCard key={post.id} post={post} />
+        ))
       ) : (
         <p>Chargement des articles...</p>
       )}

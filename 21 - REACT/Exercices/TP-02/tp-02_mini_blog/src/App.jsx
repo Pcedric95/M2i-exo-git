@@ -16,7 +16,7 @@ function App() {
         console.error("Erreur lors de la récupération des articles :", error);
       }
     };
-    fetchPosts();
+    fetchPosts(); // Appel de la fonction pour récupérer les articles
   }, []); // Lancer une seule fois quand composant charge
 
   return (
