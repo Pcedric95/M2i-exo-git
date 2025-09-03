@@ -40,20 +40,3 @@
 .read-the-docs {
   color: #888;
 }
-
-
-/* src/App.css */
-
-.pokedex-card {
-
-  /* Centrer la carte */
-  margin: 2rem auto;
-  max-width: 400px;
-  
-  /* Styles carte */
-  border: 1px solid cornflowerblue;
-  border-radius: 50px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 50px;
-  background-color: #f0f8ff;
-}
