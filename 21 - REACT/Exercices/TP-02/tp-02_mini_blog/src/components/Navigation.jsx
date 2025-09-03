@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
+import './Navigation.css';
 
 const Navigation = () => {
     return (
-        <nav style={{ marginBottom: '20px' }}>
-            <Link to="/" style={{ marginRight: '15px' }}>Accueil</Link>
+        <nav className="navigation-bar">
+            <Link to="/">Accueil</Link>
             <Link to="/create">Créer un article</Link>
         </nav>
     );
