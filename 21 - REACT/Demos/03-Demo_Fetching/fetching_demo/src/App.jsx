@@ -8,6 +8,8 @@ function App() {
   // etat pour stocker les données reçues
   const [posts, setPosts] = useState([]);
 
+  const [loading, setLoading] = useState(false);
+
   // useEffect se déclenche quand le composant est monté
   useEffect(() => {
     console.log ("Composant monté, début du fetch");
@@ -15,14 +17,18 @@ function App() {
     // fonction asynchrone pour récupérer les posts
     const fetchPosts = async () => {
       try {
+        setLoading(true);
         const response = await api.get('/posts');
 
         // Mise à jour de l'état avec les données reçues
         setPosts(response.data);
+        setLoading(false);
 
         console.log("Posts récupérés :", response.data.length);
       } catch (error) {
         console.error("Erreur lors de la récupération des posts :", error);
+      } finally {
+        setLoading(false);
       }
     }
 
