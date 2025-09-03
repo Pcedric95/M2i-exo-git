@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom"
+import './PostCard.css';
 
 
-
-const PostCard = ({post }) => {
-    return (
-        <div style={{border: '1px solid #ccc', padding: '20px', margin:'15px 0'}}>
-            <Link to={`/post/${post.id}`}>
+const PostCard = ({ post }) => {
+  return (
+    <div className="post-card">
+      <Link to={`/post/${post.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
         <h3>{post.title}</h3>
       </Link>
-      <p>{post.body}</p>
+      <p>{post.body.slice(0, 100)}...</p>
     </div>
-    )
-}
+  );
+};
 
 export default PostCard;

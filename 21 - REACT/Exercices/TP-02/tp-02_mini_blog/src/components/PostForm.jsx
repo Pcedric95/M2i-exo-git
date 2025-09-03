@@ -1,7 +1,9 @@
 
 import { useState } from 'react';
+import './PostForm.css';
 
-const PostForm = ({ onSubmit }) => { 
+const PostForm = ({ onSubmit }) => {
+    // États pour les valeurs du formulaire
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
 
@@ -11,7 +13,7 @@ const PostForm = ({ onSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '300px' }}>
+        <form onSubmit={handleSubmit} className="form-card">
             <label>
                 Titre:
                 <input
@@ -37,3 +39,4 @@ const PostForm = ({ onSubmit }) => {
 };
 
 export default PostForm;
+

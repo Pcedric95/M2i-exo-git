@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getPostById} from '../services/api'
 
 
+
 const PostDetailPage = () => {
     const [post, setPost] = useState(null)
     const [loading, setLoading] = useState(true)
