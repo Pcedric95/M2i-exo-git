@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import {Routes, Route } from 'react-router-dom'
 import { getPosts } from './services/api'
-import PostsPage from '../src/pages/PostsPage';
 import './App.css'
+import PostsPage from '../src/pages/PostsPage';
 import PostDetailPage from './pages/PostDetailPage';
+import CreatePostPage from './pages/CreatePostPage';
+import Navigation from './components/Navigation';
 
 function App() {
   const [posts, setPosts] = useState([]); // état où stocker les articles
@@ -24,11 +26,11 @@ function App() {
     <>
       
       <h1>Mini Blog</h1>
-
+      <Navigation />
       <Routes>
         <Route path="/" element={<PostsPage posts={posts} />} />
         <Route path="/post/:id" element={<PostDetailPage />} />
-        <Route path="/create" element={<h2>Créer un article</h2>} />
+        <Route path="/create" element={<CreatePostPage />} />
       </Routes>
     </>
   )

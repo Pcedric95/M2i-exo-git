@@ -16,3 +16,11 @@ export const getPostById = async (id) => {
   const response = await api.get(`/posts/${id}`);
   return response.data;
 };
+
+
+// Créer un nouvel article
+
+export const createPost = async (postData) => {
+    const response = await api.post('/posts', postData);
+    return response.data;
+}
