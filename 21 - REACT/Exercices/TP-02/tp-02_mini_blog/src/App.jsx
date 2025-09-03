@@ -3,6 +3,7 @@ import {Routes, Route } from 'react-router-dom'
 import { getPosts } from './services/api'
 import PostsPage from '../src/pages/PostsPage';
 import './App.css'
+import PostDetailPage from './pages/PostDetailPage';
 
 function App() {
   const [posts, setPosts] = useState([]); // état où stocker les articles
@@ -26,7 +27,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<PostsPage posts={posts} />} />
-        <Route path="/posts/:id" element={<h2>Détails d'un article</h2>} />
+        <Route path="/post/:id" element={<PostDetailPage />} />
         <Route path="/create" element={<h2>Créer un article</h2>} />
       </Routes>
     </>
