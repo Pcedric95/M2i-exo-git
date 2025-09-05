@@ -1,49 +1,90 @@
 // src/components/Pokedex/Pokedex.jsx
-
 import { useState, useEffect } from 'react';
-import styles from '../Pokedex/Pokedex.module.css';
-import Search from '../Search/Search'; 
+import axios from 'axios';
+import styles from './Pokedex.module.css';
+import Search from '../Search/Search';
 import List from '../List/List';
 
-const pokemons = [
-  {name: 'Pikachu', type: 'Electrik'},
-  {name: 'Bulbizarre', type: 'Plante'},
-  {name: 'Salamèche', type: 'Feu'},
-  {name: 'Carapuce', type: 'Eau'},
-  {name: 'Rondoudou', type: 'Normal'},
-  {name: 'Chétiflor', type: 'Plante'},
-  {name: 'Racaillou', type: 'Roche'},
-  {name: 'Machoc', type: 'Combat'},
-];
-
-const getInitialSearchTerm = () => {
-    const storedTerm = localStorage.getItem('searchTerm');
-    return storedTerm || 'Pikachu';
-};
-
 const Pokedex = () => {
-    const [searchTerm, setSearchTerm] = useState(getInitialSearchTerm);
+  const [searchTerm, setSearchTerm] = useState(getInitialSearchTerm);
+  const [pokemons, setPokemons] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    const handleSearch = (event) => {
-        setSearchTerm(event.target.value);
+  // Récupérer les Pokémon depuis l'API
+  useEffect(() => {
+    const fetchPokemons = async () => {
+      try {
+        const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=50');
+        const results = response.data.results;
+        const pokemonsData = await Promise.all(
+          results.map(async (pokemon) => {
+            const pokemonDetails = await axios.get(pokemon.url);
+            return {
+              name: pokemonDetails.data.name.charAt(0).toUpperCase() + pokemonDetails.data.name.slice(1),
+              type: pokemonDetails.data.types[0].type.name,
+            };
+          })
+        );
+        setPokemons(pokemonsData);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des Pokémon :', error);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    useEffect(() => {
-        localStorage.setItem('searchTerm', searchTerm);
-    }, [searchTerm]);
+    fetchPokemons();
+  }, []);
 
-    const filteredPokemons = pokemons.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
-    return (
-        <div className={styles['pokedex-card']}>
-            <h1>Mini Pokédex</h1>
-            <Search searchTerm={searchTerm} onSearch={handleSearch} />
-            <List list={filteredPokemons} />
-            {filteredPokemons.length === 0 && <p>Aucun Pokémon trouvé.</p>}
-        </div>
-    );
+  useEffect(() => {
+    localStorage.setItem('searchTerm', searchTerm);
+  }, [searchTerm]);
+
+  const filteredPokemons = pokemons.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const [favorites, setFavorites] = useState([]);
+
+// Charger les favoris depuis localStorage
+useEffect(() => {
+  const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  setFavorites(storedFavorites);
+}, []);
+
+// Sauvegarder les favoris dans localStorage
+useEffect(() => {
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+}, [favorites]);
+
+
+return (
+  <>
+    <div className={styles['pokedex-card']}>
+      <h1>Mini Pokédex</h1>
+      <Search searchTerm={searchTerm} onSearch={handleSearch} />
+      {loading ? (
+        <p>Chargement des Pokémon...</p>
+      ) : filteredPokemons.length === 0 ? (
+        <p>Aucun Pokémon trouvé.</p>
+      ) : (
+        <List list={filteredPokemons} />
+      )}
+    </div>
+    <div>
+      <h2>Favoris</h2>
+      <List list={favorites} />
+    </div>
+  </>
+);
+};
+
+const getInitialSearchTerm = () => {
+  const storedTerm = localStorage.getItem('searchTerm');
+  return storedTerm || 'Pikachu';
 };
 
 export default Pokedex;

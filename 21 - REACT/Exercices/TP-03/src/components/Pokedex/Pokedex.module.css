@@ -4,7 +4,7 @@
 
   /* Centrer la carte */
   margin: 2rem auto;
-  max-width: 400px;
+  
   
   /* Styles carte */
   border: 1px solid cornflowerblue;
@@ -12,4 +12,14 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 50px;
   background-color: #f0f8ff;
+}
+
+/* Bouton favori */
+
+.favoriteButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-top: 5px;
 }
