@@ -1,15 +1,14 @@
 // src/components/List/List.jsx
+import PokemonCard from '../PokemonCard/PokemonCard';
 
-const List = ({list}) => {
-    return (
-      <ul>
-        {list.map((item) => ( 
-            // Donner une clé unique à chaque élément de la liste
-          <li key={item.name}>
-            {item.name} ({item.type})
-          </li>
-        ))}
-      </ul>
-    );
+const List = ({ list }) => {
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+      {list.map((item) => (
+        <PokemonCard key={item.name} name={item.name} type={item.type} />
+      ))}
+    </div>
+  );
 };
+
 export default List;
