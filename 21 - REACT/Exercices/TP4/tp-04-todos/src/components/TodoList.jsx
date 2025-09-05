@@ -1,5 +1,6 @@
 import { useReducer, useState } from "react";
 import { todoReducer, initialState } from "../reducers/todoReducer";
+import './TodoList.css';
 
 
 
@@ -20,32 +21,33 @@ function TodoList() {
     };
 
     return (
-    <div>
-      <h1>Liste de tâches</h1>
-      <div>
+    <div className="todo-container">
+      <h1 className="todo-title">Liste de tâches</h1>
+      <div className="todo-form">
         {/* Champ de saisie pour ajouter une tâche */}
         <input
           type="text"
           value={newTodoText}
           onChange={(e) => setNewTodoText(e.target.value)}
           placeholder="Ajouter une tâche..."
+          className="todo-input"
         />
         {/* Bouton pour ajouter la tâche */}
-        <button onClick={handleAddTodo}>Ajouter</button>
+        <button onClick={handleAddTodo} className="todo-button">Ajouter</button>
       </div>
       {/* Liste des tâches */}
-      <ul>
+      <ul className="todo-list">
         {state.todos.map((todo) => (
-          <li key={todo.id}>
+          <li key={todo.id} className="todo-item">
             {/* Texte de la tâche, cliquable pour basculer le statut */}
             <span
-              style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
-              onClick={() => dispatch({ type: 'TOGGLE_TASK', id: todo.id })}
-            >
-              {todo.text}
-            </span>
+            className={`todo-text ${todo.completed ? 'completed' : ''}`}
+            onClick={() => dispatch({ type: 'TOGGLE_TASK', id: todo.id })}
+          >
+            {todo.text}
+          </span>
             {/* Bouton pour supprimer la tâche */}
-            <button onClick={() => dispatch({ type: 'DELETE_TASK', id: todo.id })}>
+            <button className="todo-delete" onClick={() => dispatch({ type: 'DELETE_TASK', id: todo.id })}>
               Supprimer
             </button>
           </li>
