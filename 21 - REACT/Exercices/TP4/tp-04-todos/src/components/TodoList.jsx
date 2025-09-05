@@ -40,12 +40,12 @@ function TodoList() {
             {/* Texte de la tâche, cliquable pour basculer le statut */}
             <span
               style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
-              onClick={() => dispatch({ type: 'toggle', id: todo.id })}
+              onClick={() => dispatch({ type: 'TOGGLE_TASK', id: todo.id })}
             >
               {todo.text}
             </span>
             {/* Bouton pour supprimer la tâche */}
-            <button onClick={() => dispatch({ type: 'delete', id: todo.id })}>
+            <button onClick={() => dispatch({ type: 'DELETE_TASK', id: todo.id })}>
               Supprimer
             </button>
           </li>

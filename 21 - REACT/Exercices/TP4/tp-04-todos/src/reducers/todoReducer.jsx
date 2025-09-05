@@ -7,14 +7,14 @@ export function todoReducer(state, action) {
         // Ajouter la nouvelle tâche à la liste
         case 'ADD_TASK':
             return {
-                todos: [...state.todos, { id: Date.now(), tex: action.text, completed:false}],
+                todos: [...state.todos, { id: Date.now(), text: action.text, completed:false}],
             };
 
         // Valider une tâche 
         case 'TOGGLE_TASK' :
             return {
                 todos: state.todos.map((todo) =>
-                    todo.id === action.id ? { ...todo, completed: todo.completed} : todo
+                    todo.id === action.id ? { ...todo, completed: !todo.completed} : todo
                 ),
             };
         
