@@ -1,43 +1,32 @@
 // src/components/PokemonCard/PokemonCard.jsx
-import styles from "./PokemonCard.module.css";
-import React, { useState } from "react";
+import styles from './PokemonCard.module.css';
 
-const PokemonCard = ({ name, type }) => {
-  const [favorites, setFavorites] = useState([]);
-  // URL pour les images des Pokémon (exemple avec PokeAPI ou images locales)
+const typeColors = {
+  electric: '#FFD700',
+  grass: '#7CFC00',
+  fire: '#FF4500',
+  water: '#1E90FF',
+  normal: '#A9A9A9',
+  rock: '#A0522D',
+  fighting: '#8B0000',
+  poison: '#9370DB',
+  ground: '#D2B48C',
+  flying: '#87CEFA',
+  psychic: '#FF69B4',
+  bug: '#9ACD32',
+  ghost: '#7B68EE',
+  steel: '#708090',
+  ice: '#ADD8E6',
+  dragon: '#483D8B',
+  dark: '#483D8B',
+  fairy: '#FF69B4',
+};
+
+const PokemonCard = ({ name, type, isFavorite, toggleFavorite }) => {
   const imageUrl = `https://img.pokemondb.net/artwork/large/${name.toLowerCase()}.jpg`;
 
-  // Type par couleur
-  const typeColors = {
-  electric: '#FFD700',  // Jaune
-  grass: '#7CFC00',      // Vert
-  fire: '#FF4500',       // Orange
-  water: '#1E90FF',      // Bleu
-  normal: '#ffffffff',     // Gris
-  rock: '#A0522D',        // Marron
-  fighting: '#8B0000',    // Rouge foncé
-  poison: '#9932CC',      // Violet
-  ground: '#cc4405ff',      // Marron
-  flying: '#87CEEB',      // Bleu ciel
-  psychic: '#FF69B4',     // Rose
-  bug: '#6cb621ff',         // Vert'
-  // Ajoute d'autres types si nécessaire
-};
-
-
-  const toggleFavorite = () => {
-  if (favorites.some((fav) => fav.name === name)) {
-    setFavorites(favorites.filter((fav) => fav.name !== name));
-  } else {
-    setFavorites([...favorites, { name, type }]);
-  }
-};
-
   return (
-    <div
-      className={styles.card}
-      style={{ backgroundColor: typeColors[type] || "#FFFFFF" }}
-    >
+    <div className={styles.card} style={{ backgroundColor: typeColors[type] || '#fff' }}>
       <img
         src={imageUrl}
         alt={name}
@@ -49,9 +38,9 @@ const PokemonCard = ({ name, type }) => {
       />
       <h3>{name}</h3>
       <p className={styles.type}>Type: {type}</p>
-      <button onClick={toggleFavorite} className={styles.favoriteButton}>
-  {favorites.some((fav) => fav.name === name) ? '⭐' : '☆'}
-</button>
+      <button onClick={() => toggleFavorite({ name, type })} className={styles.favoriteButton}>
+        {isFavorite ? '⭐' : '☆'}
+      </button>
     </div>
   );
 };
