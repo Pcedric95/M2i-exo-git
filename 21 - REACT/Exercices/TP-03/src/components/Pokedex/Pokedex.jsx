@@ -10,12 +10,16 @@ const Pokedex = () => {
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [favorites, setFavorites] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pokemonsPerPage = 20; // Nombre de Pokémon par page
 
   // Récupérer les Pokémon depuis l'API
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
-        const response = await axios.get('https://pokeapi.co/api/v2/pokemon');
+        setLoading(true);
+        const offset = (currentPage - 1) * pokemonsPerPage;
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=${pokemonsPerPage}&offset=${offset}`);
         const results = response.data.results;
         const pokemonsData = await Promise.all(
           results.map(async (pokemon) => {
@@ -34,7 +38,7 @@ const Pokedex = () => {
       }
     };
     fetchPokemons();
-  }, []);
+  }, [currentPage]);
 
   // Charger les favoris depuis localStorage
   useEffect(() => {
@@ -51,7 +55,6 @@ const Pokedex = () => {
     setSearchTerm(event.target.value);
   };
 
-  // Utiliser useCallback pour éviter les recréations inutiles de la fonction
   const toggleFavorite = useCallback((pokemon) => {
     setFavorites((prevFavorites) => {
       const isFavorite = prevFavorites.some((fav) => fav.name === pokemon.name);
@@ -79,6 +82,18 @@ const Pokedex = () => {
         ) : (
           <List list={filteredPokemons} favorites={favorites} toggleFavorite={toggleFavorite} />
         )}
+        <div className={styles.pagination}>
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+          >
+            Précédent
+          </button>
+          <span>Page {currentPage}</span>
+          <button onClick={() => setCurrentPage((prev) => prev + 1)}>
+            Suivant
+          </button>
+        </div>
       </div>
       <div>
         <h2>Favoris</h2>

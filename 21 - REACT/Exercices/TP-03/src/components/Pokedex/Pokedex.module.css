@@ -23,3 +23,22 @@
   cursor: pointer;
   margin-top: 5px;
 }
+
+/* Dans Pokedex.module.css, ajoute : */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
