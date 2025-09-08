@@ -1,32 +1,32 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 
-const UserCard = () => {
+const UserCard = ({ name, job, description, email, phone, avatar }) => {
     return (
         <View style={styles.card}>
             {/* Avatar */}
             <Image 
-            source={{ uri: 'https://randomuser.me/api/portraits/men/75.jpg' }}
+            source={{ uri: avatar }}
             style={styles.avatar}
             />
             {/* Informations utilisateur */} */}
-            <Text style={styles.name}>Paul Pasmieux</Text>
-            <Text style={styles.job}>Développeur en devenir sur React Native</Text>
-            <Text style={styles.description}>Passioné par le développement et les nouvelles modes de design mobile</Text>
+            <Text style={styles.name}>{name}</Text>
+            <Text style={styles.job}>{job}</Text>
+            <Text style={styles.description}> {description} </Text>
 
             {/* Contact */}
             <View style={styles.contact}>
                 <Text style={styles.contactLabel}>Email :</Text>
-                <Text style={styles.contactText}>paul.pasmieux@gmail.com</Text>
+                <Text style={styles.contactText}>{email}</Text>
                 <Text style={styles.contactLabel}>Téléphone:</Text>
-                <Text style={styles.contactText}>06 12 34 56 78</Text>
+                <Text style={styles.contactText}>{phone}</Text>
             </View>
 
             <TouchableOpacity 
             style={styles.button}
-            onPress={() => Alert.alert('Contact', 'Vous avez cliqué sur le bouton "Contacter"')}
+            onPress={() => Alert.alert('Contact', 'Vous voulez contacter ${name} ')}
             >
-                <Text style={styles.buuttonText}>Contacter</Text>
+                <Text style={styles.buttonText}>Contacter</Text>
             </TouchableOpacity>
 
             
