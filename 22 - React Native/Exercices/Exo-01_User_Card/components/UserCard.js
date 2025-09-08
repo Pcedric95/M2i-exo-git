@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Alert, Animated } from 'react-native';
 
 const UserCard = ({ name, job, description, email, phone, avatar }) => {
     return (
