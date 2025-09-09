@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Alert, Animated } from 'react-native';
 
-const UserCard = ({ name, job, description, email, phone, avatar, variant }) => {
+const UserCard = ({ name, job, description, email, phone, avatar, variant, onSelect }) => {
 
   // Animation pour les card 
   const fadeAnimation = useRef(new Animated.Value(0)).current;
@@ -25,44 +25,44 @@ const UserCard = ({ name, job, description, email, phone, avatar, variant }) => 
         </View>
         <TouchableOpacity
           style={styles.compactButton}
-          onPress={() => Alert.alert('Contact', `Vous voulez contacter ${name}`)}
+          onPress={onSelect}
         >
           <Text style={styles.compactButtonText}>+</Text>
         </TouchableOpacity>
       </Animated.View>
     );
   }
-  
-    return (
-        <Animated.View style={[styles.card, { opacity: fadeAnimation }]}>
-            
-            {/* Avatar */}
-            
-            <Image source={{ uri: avatar }} style={styles.avatar} />
 
-            {/* Informations utilisateur */} */}
-            <Text style={styles.name}>{name}</Text>
-            <Text style={styles.job}>{job}</Text>
-            <Text style={styles.description}> {description} </Text>
+  return (
+      <Animated.View style={[styles.card, { opacity: fadeAnimation }]}>
+          
+          {/* Avatar */}
+          
+          <Image source={{ uri: avatar }} style={styles.avatar} />
 
-            {/* Contact */}
-            <View style={styles.contact}>
-                <Text style={styles.contactLabel}>Email :</Text>
-                <Text style={styles.contactText}>{email}</Text>
-                <Text style={styles.contactLabel}>Téléphone:</Text>
-                <Text style={styles.contactText}>{phone}</Text>
-            </View>
+          {/* Informations utilisateur */}
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.job}>{job}</Text>
+          <Text style={styles.description}> {description} </Text>
 
-            <TouchableOpacity 
-            style={styles.button}
-            onPress={() => Alert.alert('Contact', 'Vous voulez contacter ${name} ')}
-            >
-                <Text style={styles.buttonText}>Contacter</Text>
-            </TouchableOpacity>
+          {/* Contact */}
+          <View style={styles.contact}>
+              <Text style={styles.contactLabel}>Email :</Text>
+              <Text style={styles.contactText}>{email}</Text>
+              <Text style={styles.contactLabel}>Téléphone:</Text>
+              <Text style={styles.contactText}>{phone}</Text>
+          </View>
 
-            
-        </Animated.View>
-    );
+          <TouchableOpacity 
+          style={styles.button}
+          onPress={onSelect}
+          >
+              <Text style={styles.buttonText}>Contacter</Text>
+          </TouchableOpacity>
+
+          
+      </Animated.View>
+  );
 }
 
 
@@ -72,10 +72,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 20,
     borderRadius: 10,
-    shadowColor: '#0019feff',
+    shadowColor: '#9da7ffff',
     shadowOpacity: 1,
     margin: 15,
-    elevation: 5,
+    elevation: 3,
   },
   name: { fontSize: 20, fontWeight: 'bold', textAlign: 'center' },
   job: { fontSize: 16, color: '#666', textAlign: 'center', marginBottom: 8 },
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 12,
     borderRadius: 8,
-    shadowColor: '#0019feff',
+    shadowColor: '#9da7ffff',
     shadowOpacity: 1,
     elevation: 1,
   },
@@ -148,9 +148,12 @@ const styles = StyleSheet.create({
   },
   contactLabel: {
     fontWeight: "bold",
+    textAlign: "center",
+    paddingBottom: 5
   },
   contactText: {
     marginBottom: 8,
+    textAlign: "center",
   },
   button: {
     backgroundColor: "#007bff",

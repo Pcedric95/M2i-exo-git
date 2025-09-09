@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, FlatList, SafeAreaView, ScrollView} from 'react-native';
 import UserCard from './components/UserCard';
+import React, { useState } from 'react';
+
 
 const users = [
   {
@@ -34,7 +36,7 @@ const users = [
 
 export default function App() {
 
-
+  const [selectedUser, setSelectedUser] = useState(null);
   const renderHeader = () => (
   <View style={styles.header}>
     <Text style={styles.headerText}>👥 Liste des utilisateurs</Text>
@@ -53,19 +55,29 @@ const renderFooter = () => (
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <Text style={styles.title}>👥 Notre équipe</Text>
 
-        {/* On affichera les sections ici dans l'étape suivante */}
+        {/* Section membres - détaillées */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Profils détaillés</Text>
           {users.slice(0, 2).map(user => (
             <UserCard key={user.id} {...user} variant="detailed" />
           ))}
         </View>
-
+        
+        {/* Section autres membres */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Autres membres</Text>
           {users.slice(2).map(user => (
-            <UserCard key={user.id} {...user} variant="compact" />
+            <UserCard key={user.id} {...user} variant="compact" 
+            onSelect={() => setSelectedUser(user)}
+
+            />
           ))}
+          {selectedUser && (
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Détails du membre</Text>
+              <UserCard {...selectedUser} variant="detailed" />
+            </View>
+          )}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -76,7 +88,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     paddingTop: 50,
-    backgroundColor: '#fff',
+    backgroundColor: '#f2f2f2',
   },
   scrollContent: {
     padding: 16,
@@ -84,15 +96,23 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 30,
     textAlign: 'center',
   },
   section: {
-    marginBottom: 24,
+    marginBottom: 32,
+    backgroundColor: '#fff',
+    padding: 16,
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 2,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',
-    marginBottom: 12,
+    marginBottom: 16,
+    color: '#007bff',
   },
 });
