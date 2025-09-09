@@ -1,18 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, FlatList, SafeAreaView, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native';
 import UserCard from './components/UserCard';
 import React, { useState } from 'react';
 
-
+// Données utilisateurs
 const users = [
   {
-    id: 1,
+    id: '1',
     name: "Sophie Martinez",
     job: "UX Designer",
     description: "Créative et passionnée par l'expérience utilisateur.",
     email: "sophie.martinez@example.com",
     phone: "06 98 76 54 32",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg"
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    rating: "⭐⭐⭐⭐"
   },
   {
     id: '2',
@@ -21,7 +22,8 @@ const users = [
     description: 'Passioné par le développement et les nouvelles modes de design mobile',
     email: 'paul.pasmieux@gmail.com',
     phone: '06 12 34 56 78',
-    avatar: 'https://randomuser.me/api/portraits/men/75.jpg'
+    avatar: 'https://randomuser.me/api/portraits/men/75.jpg',
+    rating: "⭐⭐⭐"
   },
   {
     id: '3',
@@ -30,56 +32,70 @@ const users = [
     description: 'Le renomé designer internationale pour l"océan"',
     email: 'ka.lamar@gmail.com',
     phone: '07 77 88 99 11',
-    avatar: 'https://randomuser.me/api/portraits/men/32.jpg'
+    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+    rating: "⭐⭐⭐⭐⭐"
+  },
+  {
+    id: '4',
+    name: 'Mi Kado',
+    job: 'Développeuse Backend',
+    description: 'Spécialiste API et sécurité.',
+    email: 'c.johnson@gmail.com',
+    phone: '06 55 66 77 88',
+    avatar: 'https://randomuser.me/api/portraits/women/6.jpg',
+    rating: "⭐⭐⭐⭐"
   }
-]
+];
 
 export default function App() {
-
   const [selectedUser, setSelectedUser] = useState(null);
+
+  // Rendu d'un élément de liste (FlatList)
+  const renderUser = ({ item, index }) => {
+    // variante selon la section
+    const variant = index < 2 ? "detailed" : "compact";
+    return (
+      <UserCard
+        {...item}
+        variant={variant}
+        onSelect={() => setSelectedUser(item)}
+      />
+    );
+  };
+
+  // En-tête de la liste
   const renderHeader = () => (
-  <View style={styles.header}>
-    <Text style={styles.headerText}>👥 Liste des utilisateurs</Text>
-  </View>
-);
+    <View style={styles.header}>
+      <Text style={styles.title}>👥 Notre équipe</Text>
+    </View>
+  );
 
-const renderFooter = () => (
-  <View style={styles.footer}>
-    <Text style={styles.footerText}>📍 Fin de la liste</Text>
-  </View>
-);
-
+  // Pied de liste
+  const renderFooter = () => (
+    <View style={styles.footer}>
+      <Text style={styles.footerText}>📍 Fin de la liste</Text>
+    </View>
+  );
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.title}>👥 Notre équipe</Text>
+      {/* Modification par FlatList */}
+      <FlatList
+        data={users}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderUser}
+        ListHeaderComponent={renderHeader}
+        ListFooterComponent={renderFooter}
+        contentContainerStyle={styles.listContent}
+      />
 
-        {/* Section membres - détaillées */}
+      {/* Affichage conditionnel du membre sélectionné */}
+      {selectedUser && (
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Profils détaillés</Text>
-          {users.slice(0, 2).map(user => (
-            <UserCard key={user.id} {...user} variant="detailed" />
-          ))}
+          <Text style={styles.sectionTitle}>Détails du membre</Text>
+          <UserCard {...selectedUser} variant="detailed" />
         </View>
-        
-        {/* Section autres membres */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Autres membres</Text>
-          {users.slice(2).map(user => (
-            <UserCard key={user.id} {...user} variant="compact" 
-            onSelect={() => setSelectedUser(user)}
-
-            />
-          ))}
-          {selectedUser && (
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Détails du membre</Text>
-              <UserCard {...selectedUser} variant="detailed" />
-            </View>
-          )}
-        </View>
-      </ScrollView>
+      )}
     </SafeAreaView>
   );
 }
@@ -90,7 +106,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     backgroundColor: '#f2f2f2',
   },
-  scrollContent: {
+  listContent: {
     padding: 16,
   },
   title: {
@@ -114,5 +130,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 16,
     color: '#007bff',
+  },
+  footer: {
+    padding: 16,
+    alignItems: 'center',
+  },
+  footerText: {
+    fontSize: 14,
+    color: '#888',
   },
 });
