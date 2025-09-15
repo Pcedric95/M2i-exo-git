@@ -9,6 +9,6 @@ fun main() {
     print("Entrez votre nom : ")
     val nom = readLine() ?: ""
 
-    val resultat = nomComplet(prenom, nom)
-    println("Votre nom complet est : $resultat")
+    val resultatNom = nomComplet(prenom, nom)
+    println("Votre nom complet est : $resultatNom")
 }
