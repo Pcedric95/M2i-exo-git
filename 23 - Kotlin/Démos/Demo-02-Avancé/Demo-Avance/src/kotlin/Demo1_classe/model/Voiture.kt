@@ -12,7 +12,23 @@ class Voiture (nom: String, var kilometrage: Double = 0.0, var couleur: String =
 
     private var estDemarree: Boolean = false
 
+    init {
+        this.nom = nom
+        this.kilometrage = kilometrage
+        this.couleur = couleur
+        this.marque = marque
+        nbVoitures++
+        println("Voiture construite : $nom")
+    }
 
+    companion object {
+        var nbVoitures: Int = 0
+            private set
+
+        fun afficherNbVoitures() {
+            println("Nombre de voitures : $nbVoitures")
+        }
+    }
 
     // Constructeur secondaire (appelant le constructeur principal)
     constructor(nom: String, couleur: String): this(nom, 0.0, couleur, "") {

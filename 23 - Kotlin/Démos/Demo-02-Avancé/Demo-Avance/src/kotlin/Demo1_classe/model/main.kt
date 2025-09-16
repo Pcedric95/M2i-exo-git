@@ -14,4 +14,8 @@ fun main() {
 
     voiture.demarrer()
 
+    var voiture2 = Voiture("Citroen", "rouge")
+    println(voiture2)
+
+    Voiture.afficherNbVoitures()
 }
