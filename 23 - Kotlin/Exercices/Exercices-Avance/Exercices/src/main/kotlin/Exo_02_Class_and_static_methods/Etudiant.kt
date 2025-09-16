@@ -18,7 +18,7 @@ class Etudiant (val nom: String, val age: Int){
         }
     }
     fun description(){ println("L'etudiant $nom a $age ans") }
-    fun détailsEtudiant() { println("Nom : $nom, Age : $age") }
+    fun detailsEtudiant() { println("Nom : $nom, Age : $age") }
 }
 
 fun main() {
