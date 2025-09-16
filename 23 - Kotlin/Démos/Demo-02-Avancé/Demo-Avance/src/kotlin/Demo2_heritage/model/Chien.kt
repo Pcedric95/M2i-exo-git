@@ -1,4 +1,4 @@
-package kotlin.Demo2_heritage.model
+package Demo2_heritage.model
 
 class Chien(name: String, var age: Int) : Animal(name) {
 

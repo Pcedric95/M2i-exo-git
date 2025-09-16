@@ -1,4 +1,4 @@
-package kotlin.Demo2_heritage.model
+package Demo2_heritage.model
 
 open class Animal(var name: String) {
 
