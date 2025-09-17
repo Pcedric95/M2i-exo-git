@@ -1,5 +1,6 @@
 import Exceptions.DocumentDejaEmprunteException
 import Exceptions.DocumentNonEmprunteException
+import Consultable
 
 class Livre (
     titre: String,
@@ -8,7 +9,7 @@ class Livre (
     val nbPages: Int,
     val genre: Genre
 
-): Document(titre, anneePublication), Empruntable {
+): Document(titre, anneePublication), Empruntable, Consultable {
     constructor(
         titre: String,
         auteur: String,
