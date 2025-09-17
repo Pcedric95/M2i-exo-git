@@ -2,7 +2,7 @@ fun main() {
     val fileAttente = ArrayDeque<String>()
 
     // Ajoutez plusieurs clients (exemple)
-    fileAttente.addAll(listOf( "Arthur", "John", "Lennie", "Charles", "Sean"))
+    fileAttente.addAll(listOf( "Arthur", "John","Dutch", "Lennie", "Charles", "Sean"))
 
     println("File initiale : $fileAttente")
     println("Appuie sur Entrée pour traiter chaque client...")
