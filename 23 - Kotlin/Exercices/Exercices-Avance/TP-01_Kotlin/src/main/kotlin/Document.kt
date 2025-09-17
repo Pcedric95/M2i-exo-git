@@ -1,6 +1,6 @@
 abstract class Document (
     val titre: String,
-    val anneePublication: String)
+    val anneePublication: Int)
 {
     abstract fun afficherInformations()
 }
