@@ -31,8 +31,8 @@ fun main() {
     Etudiant.afficherCompteur()
 
     etudiant_01.description()
-    etudiant_02.détailsEtudiant()
+    etudiant_02.detailsEtudiant()
     etudiant_03.description()
-    etudiant_04.détailsEtudiant()
+    etudiant_04.detailsEtudiant()
 
 }
