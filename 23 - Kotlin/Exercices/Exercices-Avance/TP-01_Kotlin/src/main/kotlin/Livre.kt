@@ -1,3 +1,6 @@
+import Exceptions.DocumentDejaEmprunteException
+import Exceptions.DocumentNonEmprunteException
+
 class Livre (
     titre: String,
     anneePublication: Int,
@@ -5,7 +8,7 @@ class Livre (
     val nbPages: Int,
     val genre: Genre
 
-): Document(titre, anneePublication) {
+): Document(titre, anneePublication), Empruntable {
     constructor(
         titre: String,
         auteur: String,
@@ -17,6 +20,28 @@ class Livre (
         nbPages = 100,
         genre = genre
     )
+
+    // 7. interface Empruntable
+    override var estEmprunte: Boolean = false
+
+    override fun emprunter() {
+        if (!estEmprunte) {
+            estEmprunte = true
+            println("Le livre $titre est emprunté avec succès.")
+        } else {
+            throw DocumentDejaEmprunteException()
+        }
+    }
+
+    override fun rendre() {
+        if (estEmprunte) {
+            estEmprunte = false
+            println("Le livre $titre a été rendu avec succès.")
+        } else {
+            throw DocumentNonEmprunteException()
+        }
+    }
+
 
     override fun afficherInformations() {
         println("Livre : $titre, année de publication : $anneePublication, auteur : $auteur, $nbPages pages, Genre : $genre")

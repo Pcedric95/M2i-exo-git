@@ -1,4 +1,4 @@
 package Exceptions
 
-class DocumentDejaEmprunteException(message: String = "Ce document est déjà emprunté.") : Exception(message)
+class DocumentDejaEmprunteException(message: String = "Cet élément est déjà emprunté.") : Exception(message)
 
