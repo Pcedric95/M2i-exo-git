@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:ignore="ExtraText">
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- En-tête -->
+            <TextView
+                android:id="@+id/tvTitre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Carte Étudiant"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_gravity="center"
+
+            <!-- Formulaire -->
+            <EditText
+                android:id="@+id/etNom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nom complet" />
+
+            <EditText
+                android:id="@+id/etNumero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Numéro d'étudiant"
+                android:inputType="number" />
+
+            <!-- Filière -->
+            <RadioGroup
+                android:id="@+id/rgFiliere"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RadioButton android:id="@+id/rbInfo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Informatique"/>
+                <RadioButton android:id="@+id/rbMath" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mathématiques"/>
+                <RadioButton android:id="@+id/rbPhys" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Physique"/>
+                <RadioButton android:id="@+id/rbChim" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chimie"/>
+            </RadioGroup>
+
+            <!-- Niveau -->
+            <Spinner
+                android:id="@+id/spNiveau"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!-- Boursier -->
+            <CheckBox
+                android:id="@+id/cbBoursier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Boursier" />
+
+            <!-- Accès bibliothèque -->
+            <Switch
+                android:id="@+id/swBibliotheque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accès bibliothèque" />
+
+            <!-- Prévisualisation -->
+            <LinearLayout
+                android:id="@+id/zoneCarte"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/ivPhoto"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/tvNomPreview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nom affiché ici"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvNumeroPreview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Numéro affiché ici" />
+
+                <ProgressBar
+                    android:id="@+id/pbProgression"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:progress="0" />
+            </LinearLayout>
+
+            <!-- Personnalisation -->
+            <RadioGroup
+                android:id="@+id/rgCouleur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RadioButton android:id="@+id/rbBleu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bleu"/>
+                <RadioButton android:id="@+id/rbVert" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Vert"/>
+                <RadioButton android:id="@+id/rbRouge" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rouge"/>
+            </RadioGroup>
+
+            <SeekBar
+                android:id="@+id/sbTailleTexte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="40"
+                android:progress="18" />
+
+            <CheckBox
+                android:id="@+id/cbInfosSupp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Afficher infos complémentaires" />
+
+            <!-- Actions -->
+            <Button
+                android:id="@+id/btnGenerer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Générer la carte" />
+
+            <Button
+                android:id="@+id/btnApercu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aperçu" />
+
+            <Button
+                android:id="@+id/btnReset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Réinitialiser" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
