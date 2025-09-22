@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TP-02-Gestionnaire_note_frais</string>
+
+    <string-array name="SpinnerTypeDeFrais">
+        <item>transport</item>
+        <item>Hébergement</item>
+        <item>Repas</item>
+        <item>Matériel</item>
+        <item>Formation</item>
+    </string-array>
+</resources>
