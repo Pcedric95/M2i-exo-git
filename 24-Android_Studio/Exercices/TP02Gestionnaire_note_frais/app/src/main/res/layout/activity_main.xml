@@ -32,6 +32,8 @@
                 android:text="test git"
                 android:textSize="24sp"
                 android:layout_gravity="center_horizontal"
+                android:id="@+id/titreTextView"
+            />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,34 +45,42 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nom de l'emplyé"
+                android:hint="Nom de l'employé"
+                android:id="@+id/nomEmployeEditText"
             />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Numéro d'employé"
+                android:id="@+id/numeroEmployeEditText"
             />
             <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="horizontal"
+				tools:ignore = "ExtraText">
+                android:id="@+id/departementRadioGroup"
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Commercial"
+                    android:id="@+id/commercialRadioButton"
                 />
                 <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Marketing"
+                android:id="@+id/marketingRadioButton"
                 />
                 <RadioButton
+                android:id="@+id/itRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="IT"
                 />
                 <RadioButton
+                android:id="@+id/rhRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="RH"
@@ -84,20 +94,24 @@
 
             <!-- Détails du frais -->
             <CheckBox
+                android:id="@+id/fraisRecurrentCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="frais récurrent"
             />
             <Switch
+                android:id="@+id/avecTVASwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Avec TVA Récupérable"
             />
             <TextView
+                android:id="@+id/montantTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Montant : 0 €"/>
             <SeekBar
+                android:id="@+id/montantSeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="100"
@@ -107,36 +121,43 @@
 
             <!-- Options avancées -->
             <RadioGroup
+                android:id="@+id/urgenceRadioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <RadioButton
+                    android:id="@+id/normalRadioButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Normal"
                 />
                 <RadioButton
+                    android:id="@+id/urgentRadioButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Urgent"
                 />
                 <RadioButton
+                    android:id="@+id/tresUrgentRadioButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Très urgent"
                 />
                 <CheckBox
+                    android:id="@+id/justificatifCheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Justificatif fourni"
                 />
                 <CheckBox
+                    android:id="@+id/validationManagerCheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Validation manager requise"
                 />
                 <!-- prévisualisation -->
                 <TextView
+                    android:id="@+id/montantTTCTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
@@ -144,6 +165,7 @@
                     android:text="Montant TTC : 0 €"
                 />
                 <ProgressBar
+                    android:id="@+id/budgetProgressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:max="100"
@@ -160,16 +182,19 @@
                 />
 
                     <Button
+                        android:id="@+id/calculerButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Calculer Total"
                     />
                     <Button
+                        android:id="@+id/soumettreButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Soumettre"
                     />
                     <Button
+                        android:id="@+id/resetButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Reset"
