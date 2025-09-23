@@ -5,6 +5,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.widget.TextView
+import android.widget.SeekBar
+import android.widget.ProgressBar
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.Switch
+import android.widget.RadioGroup
+import android.widget.Spinner
+import android.widget.EditText
+
 
 data class NoteFrais(
     var nomEmploye: String = "",
@@ -36,21 +46,23 @@ class MainActivity : AppCompatActivity() {
     private lateinit var noteFrais: NoteFrais
     private lateinit var montantTextView: TextView
     private lateinit var montantSeekBar: SeekBar
-    private lateinit var montantTTCTextView: montantTTCTextView
+    private lateinit var montantTTCTextView: TextView
     private lateinit var budgetProgressBar: ProgressBar
 
 
 
 
-
+    // Méthode appelée à la création de l'activité
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        noteFrais = NoteFrais()
-        initialiserComposants()
-        configurerEcouteurs()
+        setContentView(R.layout.activity_main)  // Layout de l'activité
+
+        noteFrais = NoteFrais()  // Initialiser une nouvelle note de frais
+        initialiserComposants()  // Initialiser les composants UI
+        configurerEcouteurs()    // Configurer les écouteurs d'événements
     }
 
+    // Lier les composants UI  à leurs IDs
     private fun initialiserComposants() {
         montantTextView = findViewById(R.id.montantTextView)
         montantSeekBar = findViewById(R.id.montantSeekBar)
@@ -58,6 +70,16 @@ class MainActivity : AppCompatActivity() {
         budgetProgressBar = findViewById(R.id.budgetProgressBar)
     }
 
-    private fun configurerEcouteurs() {}
-
+    // Configure les écouteurs d'événements pour les interactions utilisateur
+    private fun configurerEcouteurs() {
+        // Écouteur pour le SeekBar : met à jour le montant affiché quand l'utilisateur interagit
+        montantSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                noteFrais.montant = progress.toDouble()  // Met à jour le montant dans noteFrais
+                montantTextView.text = "Montant : ${noteFrais.montant} €"  // Met à jour l'affichage
+            }
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}  // Méthode appelée quand l'utilisateur commence à interagir
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}   // Méthode appelée quand l'utilisateur arrête d'interagir
+        })
+    }
 }

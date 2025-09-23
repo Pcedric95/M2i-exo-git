@@ -114,7 +114,7 @@
                 android:id="@+id/montantSeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="100"
+                android:max="500"
                 android:min="0"
                 android:progress="10"
             />
