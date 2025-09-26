@@ -1,0 +1,70 @@
+# WORKFLOW
+# -> STAGE
+#     -> JOB
+#         -> COMMANDE
+# -> STAGE
+#     -> JOB
+#         -> COMMANDE
+#     -> JOB
+#         -> COMMANDE
+#         -> COMMANDE
+# -> STAGE
+#     -> JOB
+#         -> COMMANDE
+#     -> JOB
+#         -> COMMANDE
+#         -> COMMANDE
+#     -> JOB
+#         -> COMMANDE
+
+# Par défaut, Gitlab CI va fournir des stages pour ordonner les jobs:
+# .pre
+# build
+# test
+# deploy
+# .post
+
+stages:
+  - build
+  - test_node
+  - unit_test
+  - int_test
+
+# Nom du job
+build_appli:
+  # Cette clé permet de choisir l'image qui va être utilisée par notre runner (dans le cas où c'est un runner Docker)
+  image: alpine
+  # On choisi à quel moment du pipeline le job doit avoir lieu
+  stage: build
+  # Propriété 'script' permet de lancer des commandes dans le terminal
+  script:
+    - echo "Hello World!"
+    - echo "Je suis passé!"
+    - mkdir -p build
+    - echo "<h1>Hello World</h1>" > build/index.html
+  artifacts:
+    paths:
+      - build/
+  
+test_node_version:
+  image: node:alpine
+  stage: test_node
+  script:
+    - node -v
+    - npm -v
+
+
+test_unit_appli:
+  image: alpine
+  dependencies: 
+    - build_appli
+  stage: unit_test
+  script:
+    - echo "Je fais les tests unitaires..."
+    - cat build/index.html | grep "Hello" 
+
+test_integration_appli:
+  dependencies: []
+  stage: int_test
+  script:
+    - echo "Je fais les tests d'intégration..."

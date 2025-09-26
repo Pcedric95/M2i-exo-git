@@ -1,0 +1,35 @@
+# Workflow
+
+stages:
+  - build
+  - test
+  - deploy
+
+
+# Job 1 : Compilation
+compile-job:
+  stage: build
+  script:
+    - echo "Compilation en cours..."
+    - echo "Compilation terminée"
+
+# Job 2 : Tests unitaires
+unit-tests-job:
+  stage: test
+  script:
+    - echo "Tests unitaires en cours..."
+    - echo "Tests unitaires OK "
+
+# Job 3 : Tests d'intégration
+integration-tests-job:
+  stage: test
+  script:
+    - echo "Tests d'intégration en cours..."
+    - echo "Tests d'intégration OK "
+
+# Job 4 : Déploiement
+deploy-job:
+  stage: deploy
+  script:
+    - echo "Déploiement fictif en cours..."
+    - echo "Déploiement fictif terminé"
