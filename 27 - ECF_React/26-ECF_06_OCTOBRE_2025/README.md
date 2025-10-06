@@ -37,3 +37,24 @@ Vous intervenez en tant qu'intégratrice ou intégrateur front-end au sein d'une
 
 
 Bon courage !
+
+
+
+
+
+## Mes Réalisations
+
+### Frontend 
+
+- Interface presque conforme aux maquettes 
+- Formulaire d'ajout/édition d'employé fonctionnel
+- Components : EmployeeList, EmployeeForm, -> les styles sont dans le même dossier 
+
+
+### Backend
+
+ - Le backend n'est pas fonctionnel pour moi en local (mysql ne fonctionne pas sur mon poste)
+ - J'ai modifié les paramètres de connexion dans application.properties pour utiliser h2 en mémoire -> ça fonctionne en local (dans un autre dossier) mais avec le backend original, ça ne fonctionne pas 
+- Configuration Docker -> j'ai crée les Dockerfile manquants et complété le docker-compose.yml
+
+le docker n'a pas fonctionné pour moi -> à cause du backend
