@@ -1,15 +1,12 @@
 
-FROM openjdk:17-jdk-slim
+FROM maven:3.8-openjdk-17-slim
 
 WORKDIR /app
 
-
-COPY mvnw .
-COPY .mvn .mvn
 COPY pom.xml .
 
 # mettre en cache dépendances Maven
-RUN ./mvnw dependency:go-offline -B
+RUN mvn dependency:go-offline -B
 
 COPY src ./src
 
