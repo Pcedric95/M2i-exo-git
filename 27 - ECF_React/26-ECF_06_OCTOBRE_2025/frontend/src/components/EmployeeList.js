@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import './EmployeeList.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const EmployeeList = () => {
+    const navigate = useNavigate();
   // Données mockées pour les employés
   const [employees] = useState([
     { id: 1, firstName: 'Linda', lastName: 'Quigley', email: 'britteny.dooley@hotmail.com' },
@@ -24,8 +27,7 @@ const EmployeeList = () => {
   };
 
   const handleAddEmployee = () => {
-    // temporaire
-    alert('Redirection vers le formulaire d\'ajout d\'employé'); // temporaire pour test bouton
+    navigate('/add-employee');
   };
 
   return (
