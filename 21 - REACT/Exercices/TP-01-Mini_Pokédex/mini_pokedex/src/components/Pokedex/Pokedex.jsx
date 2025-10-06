@@ -18,7 +18,7 @@ const pokemons = [
 
 const getInitialSearchTerm = () => {
     const storedTerm = localStorage.getItem('searchTerm');
-    return storedTerm || 'Pikachu';
+return storedTerm || 'Pikachu';
 };
 
 const Pokedex = () => {
