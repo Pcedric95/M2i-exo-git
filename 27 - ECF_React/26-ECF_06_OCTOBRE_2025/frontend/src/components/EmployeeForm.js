@@ -45,59 +45,48 @@ const EmployeeForm = () => {
 
 
   return (
-    <div className='employee-form-container'>
-    
-      <div className='employee-form-header'>
+    <div className="employee-form-container">
+      <div className="employee-form-header">
         <h2>{isEditMode ? 'Edit Employee' : 'Add Employee'}</h2>
       </div>
-    
-      <form className='employee-form' onSubmit={handleSubmit}>
-        
-        <div className='form-group'>
-          <label htmlFor='firstName'>First Name</label>
-          <input 
-            type='text'
-            id='firstName'
-            name='firstname'
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-          />
+
+      <form className="employee-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstname" value={formData.firstName} onChange={handleChange} required />
         </div>
 
-        <div className='form-group'>
-          <label htmlFor='lastName'>Last Name</label>
-          <input 
-            type='text'
-            id='lastName'
-            name='lastname'
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
+        <div className="form-group">
+          <label htmlFor="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastname" value={formData.lastName} onChange={handleChange} required />
         </div>
 
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
         </div>
-        
-        <div className='form-group'>
 
+        <div className="form-group">
+          <label htmlFor="department">Department</label>
+          <select id="department" name="department" value={formData.department} onChange={handleChange} required>
+            <option value="food-beerage">Food & Beerage</option>
+            <option value="tech-gadgets">Tech & Gadgets</option>
+            <option value="fashion-style">Fashion & Style</option>
+            <option value="home-living">Home & Living</option>
+            <option value="sports-outdoors">Sports & Outdoors</option>
+            <option value="arts-culture">Arts & Culture</option>
+          </select>
         </div>
-        
-        <div className='form-group'>
 
+        <div className="form-actions">
+          <button type="button"  className="cancel-btn">
+            CANCEL
+          </button>
+          <button type="submit" className="submit-btn">
+            {isEditMode ? 'UPDATE' : 'SAVE'}
+          </button>
         </div>
       </form>
-
     </div>
   );
 };
