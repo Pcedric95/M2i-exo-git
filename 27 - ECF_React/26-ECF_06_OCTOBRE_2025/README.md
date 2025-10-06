@@ -53,8 +53,8 @@ Bon courage !
 
 ### Backend
 
- - Le backend n'est pas fonctionnel pour moi en local (mysql ne fonctionne pas sur mon poste)
+ - Le backend n'est pas fonctionnel pour moi en local (mysql ne fonctionne pas sur mon poste, dû à une erreur)
  - J'ai modifié les paramètres de connexion dans application.properties pour utiliser h2 en mémoire -> ça fonctionne en local (dans un autre dossier) mais avec le backend original, ça ne fonctionne pas 
 - Configuration Docker -> j'ai crée les Dockerfile manquants et complété le docker-compose.yml
 
-le docker n'a pas fonctionné pour moi -> à cause du backend
+le docker compose n'a pas fonctionné pour moi -> à cause du backend
