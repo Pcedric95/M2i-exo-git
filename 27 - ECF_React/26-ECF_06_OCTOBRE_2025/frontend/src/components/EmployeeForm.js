@@ -14,7 +14,8 @@ const EmployeeForm = () => {
     firstName: '',
     lastName: '',
     email: '',
-    department: ''
+    department: '',
+    age: ''
   })
 
   // ------------- simulation données car pas de backend fonctionnel - RAPPEL -> A FAIRE /!\ -------------
@@ -54,14 +55,15 @@ const EmployeeForm = () => {
         <div className="form-group">
           <fieldset>
           <legend htmlFor="firstName">First Name*</legend>
-          <input type="text" id="firstName" name="firstname" value={formData.firstName} onChange={handleChange} required />
+          <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} required />
+
           </fieldset>
         </div>
 
         <div className="form-group">
           <fieldset>
             <legend htmlFor="lastName">Last Name*</legend>
-            <input type="text" id="lastName" name="lastname" value={formData.lastName} onChange={handleChange} required />
+            <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} required />
           </fieldset>
         </div>
 
