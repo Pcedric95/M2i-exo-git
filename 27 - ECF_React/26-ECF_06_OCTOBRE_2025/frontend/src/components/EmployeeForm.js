@@ -52,23 +52,38 @@ const EmployeeForm = () => {
 
       <form className="employee-form" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="firstName">First Name</label>
+          <fieldset>
+          <legend htmlFor="firstName">First Name*</legend>
           <input type="text" id="firstName" name="firstname" value={formData.firstName} onChange={handleChange} required />
+          </fieldset>
         </div>
 
         <div className="form-group">
-          <label htmlFor="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastname" value={formData.lastName} onChange={handleChange} required />
+          <fieldset>
+            <legend htmlFor="lastName">Last Name*</legend>
+            <input type="text" id="lastName" name="lastname" value={formData.lastName} onChange={handleChange} required />
+          </fieldset>
         </div>
 
         <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+          <fieldset>
+            <legend htmlFor="email">Email*</legend>
+            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+          </fieldset>
         </div>
 
         <div className="form-group">
-          <label htmlFor="department">Department</label>
-          <select id="department" name="department" value={formData.department} onChange={handleChange} required>
+          <fieldset>
+            <legend htmlFor="age">Age*</legend>
+            <input type="number" id="age" name="age" value={formData.age} onChange={handleChange} min={0} max={100} required />
+          </fieldset>
+        </div>
+            
+
+        <div className="form-group">
+          <fieldset>
+            <legend htmlFor="department">Department*</legend>
+  <select id="department" name="department" value={formData.department} onChange={handleChange} required>
             <option value="food-beerage">Food & Beerage</option>
             <option value="tech-gadgets">Tech & Gadgets</option>
             <option value="fashion-style">Fashion & Style</option>
@@ -76,12 +91,10 @@ const EmployeeForm = () => {
             <option value="sports-outdoors">Sports & Outdoors</option>
             <option value="arts-culture">Arts & Culture</option>
           </select>
+          </fieldset>
         </div>
 
         <div className="form-actions">
-          <button type="button"  className="cancel-btn">
-            CANCEL
-          </button>
           <button type="submit" className="submit-btn">
             {isEditMode ? 'UPDATE' : 'SAVE'}
           </button>
